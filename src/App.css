@@ -1,0 +1,27 @@
+.active {
+  color: #ffb100;
+  background-color: #fff4d9;
+  font-weight: 600;
+}
+.active::before {
+  position: absolute;
+  top: 0;
+  left: 2px;
+  content: "";
+  width: 4px;
+  height: 35px;
+  background-color: #ffb100;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.page-active {
+  color: white;
+  background-color: #ffb100;
+  box-shadow: 1px 1px 4px rgb(70, 66, 85, 0.3);
+  font-weight: 600;
+}
+
+.sidebar-active {
+  display: block;
+}
