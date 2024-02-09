@@ -4,7 +4,7 @@ import { BiSolidMessageSquareDots } from "react-icons/bi";
 import { HiMiniBars3BottomLeft } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ toggleChat }) => {
   const handleSidebarToggle = () => {
     const sidebar = document.getElementById("sidebar");
     const overlay = document.getElementById("overlay");
@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <>
       <div className="w-full flex flex-row px-10 lg:justify-end justify-between items-center md:gap-x-3 p-4">
-        <div className="lg:hidden bg-linkBg p-2 rounded-lg text-textActive">
+        <div className="lg:hidden bg-linkBg p-2 rounded-lg text-textActive cursor-pointer">
           <HiMiniBars3BottomLeft size={20} onClick={handleSidebarToggle} />
         </div>
         <div className="flex flex-row gap-x-3 md:border-r md:border-gray-400 px-5 md:pl-[40%]">
@@ -31,13 +31,13 @@ const Navbar = () => {
             <GoBell />
             <div className="w-[15px] h-[15px] bg-primary rounded-full absolute top-[-5px] right-[-5px]"></div>
           </div>
-          <NavLink
+          <div
             className="bg-linkBg p-2 rounded-lg text-textActive font-extrabold cursor-pointer relative"
-            to={"/chat"}
+            onClick={toggleChat}
           >
             <BiSolidMessageSquareDots />
             <div className="w-[15px] h-[15px] bg-primary rounded-full absolute top-[-5px] right-[-5px]"></div>
-          </NavLink>
+          </div>
         </div>
         <div className="text-primary hidden md:block">
           <span className="text-[15px]">Welcome,{"   "}</span>

@@ -14,7 +14,7 @@ const ChatSideBar = ({ openSideBar }) => {
         openSideBar &&
         "fixed top-0 left-0 z-50 w-[250px] md:w-[300px] shadow-2xl min-h-full transform translate-x-0 "
       }
-      ${isSmallScreen && !openSideBar && "translate-x-[-100%] absolute "}"
+      ${isSmallScreen && !openSideBar && "translate-x-[-200%] absolute "}"
 
        }
        

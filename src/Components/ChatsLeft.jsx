@@ -7,7 +7,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 const ChatsLeft = ({ toggleSideBar, openSideBar }) => {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col min-h-screen overflow-y-auto bg-white relative ">
+    <div className="flex flex-col overflow-y-auto ">
       <div className="flex  flex-row justify-between items-center px-10 py-4 gap-x-4 border-b border-gray-300">
         <div className="flex flex-row justify-center items-center gap-x-3">
           <img src="https://i.pravatar.cc/50" alt="" className="rounded-full" />
@@ -33,7 +33,7 @@ const ChatsLeft = ({ toggleSideBar, openSideBar }) => {
           />
         )}
       </div>
-      <div className="flex flex-col gap-y-12 px-10 py-10">
+      <div className="flex flex-col gap-y-12 px-10 py-10 pb-32">
         <div className="flex flex-col justify-start items-start gap-y-10">
           <div className="relative">
             <span className="px-4 py-2 bg-gray-200 text-gray-800 rounded-tr-xl rounded-br-xl rounded-tl-2xl text-[14px] font-medium">
@@ -127,17 +127,14 @@ const ChatsLeft = ({ toggleSideBar, openSideBar }) => {
           </div>
         </div>
       </div>
-      <div className="fixed bottom-3 w-[90%] lg:w-[74vw] lg:right-16 mx-auto md:right-10 right-7 bg-white">
-        <label htmlFor="" className="relative">
-          <input
-            type="text"
-            name="textMessage"
-            id="textMessage"
-            className="w-full bg-transparent p-3 outline-textActive border-2 border-gray-300 rounded-lg"
-            placeholder="Type a message"
-          />
-          <IoIosSend className="absolute right-5 top-0 text-textActive text-2xl" />
-        </label>
+      <div className="relative">
+        <input
+          type="text"
+          name="textMessage"
+          id="textMessage"
+          className="bg-white p-3 outline-textActive border-2 border-gray-300 rounded-lg fixed xl:bottom-[130px] xl:right-5 w-[72%] lg:w-[57vw] lg:left-64 mx-auto right-[40px] focus:outline-none bottom-[340px] md:bottom-[410px] md:right-24 lg:bottom-96 lg:right-20"
+          placeholder="Type a message"
+        />
       </div>
     </div>
   );
