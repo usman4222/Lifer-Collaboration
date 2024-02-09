@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { GoBell } from "react-icons/go";
 import { BiSolidMessageSquareDots } from "react-icons/bi";
 import { HiMiniBars3BottomLeft } from "react-icons/hi2";
@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="w-full flex flex-row lg:justify-end justify-between items-center md:gap-x-3 p-4">
+      <div className="w-full flex flex-row px-10 lg:justify-end justify-between items-center md:gap-x-3 p-4">
         <div className="lg:hidden bg-linkBg p-2 rounded-lg text-textActive">
           <HiMiniBars3BottomLeft size={20} onClick={handleSidebarToggle} />
         </div>
@@ -48,12 +48,12 @@ const Navbar = () => {
           className="w-[50px] h-[50px] rounded-full"
           alt=""
         />
+        <div
+          id="overlay"
+          className="w-full h-full absolute top-0 left-0 bg-[rgba(0,0,0,0.5)] hidden z-10"
+          onClick={closeSideBar}
+        ></div>
       </div>
-      <div
-        id="overlay"
-        className="w-full h-full absolute top-0 left-0 bg-[rgba(0,0,0,0.5)] hidden z-10"
-        onClick={closeSideBar}
-      ></div>
     </>
   );
 };

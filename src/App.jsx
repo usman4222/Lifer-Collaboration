@@ -5,6 +5,8 @@ import Home from "./Screens/Home";
 import Navbar from "./Components/Navbar";
 import OrderHistory from "./Screens/OrderHistory";
 import Orders from "./Screens/Orders";
+import Help from "./Screens/Help";
+import Chat from "./Screens/Chat";
 function App() {
   return (
     <>
@@ -14,6 +16,8 @@ function App() {
         <Route element={<Home />} path="/" />
         <Route element={<OrderHistory />} path="/order-history" />
         <Route element={<Orders />} path="/orders" />
+        <Route element={<Help />} path="/help" />
+        <Route element={<Chat />} path="/chat" />
       </Routes>
     </>
   );

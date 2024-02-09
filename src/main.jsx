@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Chat from "./Screens/Chat.jsx";
+import "flowbite";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
