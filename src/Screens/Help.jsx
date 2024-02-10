@@ -99,7 +99,7 @@ const Help = () => {
                           <tr>
                             <td
                               colSpan="10"
-                              className="p-10 "
+                              className="p-4"
                               style={{ background: "#FFB100" }}
                             >
                               <table className="table-auto w-full">

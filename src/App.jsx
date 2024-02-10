@@ -11,6 +11,7 @@ import Chat from "./Screens/Chat";
 import Revenue from "./Screens/Revenue";
 import { createPortal } from "react-dom";
 import Overlay from "./Components/Overlay";
+import Rider from "./Screens/Rider";
 function App() {
   const [overlay, setOverlay] = useState(false);
   const [showChat, setShowChat] = useState(false);
@@ -30,6 +31,7 @@ function App() {
         <Route element={<Orders />} path="/orders" />
         <Route element={<Help />} path="/help" />
         <Route element={<Revenue />} path="/revenue" />
+        <Route element={<Rider />} path="/riders" />
       </Routes>
       {showChat && (
         <>
