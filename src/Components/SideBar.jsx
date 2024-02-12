@@ -13,7 +13,7 @@ const SideBar = () => {
   return (
     <>
       <div
-        className="w-[200px] md:w-[250px] lg:block lg:w-[250px] min-h-full  bg-white pt-10 fixed top-0 left-0 transition-transform duration-500 transform lg:translate-x-0 translate-x-[-100%]"
+        className="w-[200px] md:w-[250px] lg:block lg:w-[250px] min-h-full  bg-white pt-10 fixed top-0 left-0 transition-transform duration-500 transform lg:translate-x-0 translate-x-[-100%]  shadow-2xl shadow-gray-400"
         style={{ zIndex: 1000 }}
         id="sidebar"
       >

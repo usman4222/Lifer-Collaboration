@@ -56,8 +56,8 @@ const Table = () => {
                 </tr>
                 {selectedRow === item.id && (
                   <tr className="text-center">
-                    <td colSpan="10" className="p-10 bg-linkBg">
-                      <table className="table-auto w-full">
+                    <td colSpan="20" className="p-10">
+                      <table className="table-auto w-full h-full">
                         <thead>
                           <tr className="text-center border-b">
                             <th className="px-4 py-2">#</th>

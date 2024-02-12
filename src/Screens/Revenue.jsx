@@ -4,7 +4,7 @@ import { FaArrowUpLong } from "react-icons/fa6";
 import Wrapper from "../Components/Wrapper";
 import HeaderSection from "../Components/HeaderSection";
 
-const Revenue = () => {
+const Revenue = ({ toggleRevenueForm }) => {
   return (
     <Wrapper>
       <HeaderSection heading={"Revenue"} para={"Track your Earnings"} />
@@ -59,7 +59,10 @@ const Revenue = () => {
                 <h6 className="text-xl font-medium text-gray-100 mb-5">
                   Add to Today's Revenue through this button
                 </h6>
-                <button className="px-6 py-2 bg-white text-gray-600 rounded-lg font-semibold text-lg">
+                <button
+                  className="px-6 py-2 bg-white text-gray-600 rounded-lg font-semibold text-lg"
+                  onClick={toggleRevenueForm}
+                >
                   +Add Menu
                 </button>
               </div>

@@ -3,7 +3,8 @@ import { MdOutlineLiveHelp } from "react-icons/md";
 import Wrapper from "../Components/Wrapper";
 import HeaderSection from "../Components/HeaderSection";
 import { IoMdArrowDropdown } from "react-icons/io";
-const Help = () => {
+import { NavLink } from "react-router-dom";
+const Help = ({ toggleRepresentator }) => {
   const [selectedRow, setSelectedRow] = useState(null);
 
   const answer = [
@@ -46,7 +47,10 @@ const Help = () => {
             <HeaderSection heading="Help" para={"How can we help you?"} />
             <div className="pt-5">
               <div className="flex flex-col md:flex-row gap-4 md:px-20 px-8 py-10">
-                <div className="bg-amber-700 rounded-xl p-4 flex flex-col md:flex-row items-center justify-center gap-x-2 gap-y-3">
+                <NavLink
+                  className="bg-amber-700 rounded-xl p-4 flex flex-col md:flex-row items-center justify-center gap-x-2 gap-y-3"
+                  to={"/help-form"}
+                >
                   <div className="p-10 bg-amber-600 rounded-full">
                     <MdOutlineLiveHelp className="text-4xl text-white " />
                   </div>
@@ -59,8 +63,11 @@ const Help = () => {
                       please click on this Button
                     </p>
                   </div>
-                </div>
-                <div className="bg-yellow-500 rounded-xl p-4 flex items-center justify-center flex-col md:flex-row gap-x-2 gap-y-3">
+                </NavLink>
+                <div
+                  className="bg-yellow-500 rounded-xl p-4 flex items-center justify-center flex-col md:flex-row gap-x-2 gap-y-3"
+                  onClick={toggleRepresentator}
+                >
                   <div className="p-10 bg-yellow-600 rounded-full">
                     <MdOutlineLiveHelp className="text-4xl text-white" />
                   </div>

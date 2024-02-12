@@ -12,12 +12,35 @@ import Revenue from "./Screens/Revenue";
 import { createPortal } from "react-dom";
 import Overlay from "./Components/Overlay";
 import Rider from "./Screens/Rider";
+import RiderForm from "./Components/RiderForm";
+import HelpForm from "./Components/HelpForm";
+import Representator from "./Components/Representator";
+import Menu from "./Screens/Menu";
+import AddMenu from "./Screens/AddMenu";
+import AddRevenue from "./Components/AddRevenue";
 function App() {
   const [overlay, setOverlay] = useState(false);
   const [showChat, setShowChat] = useState(false);
+  const [showRiderForm, setShowRiderForm] = useState(false);
+  const [showRepresentator, setShowRepresentator] = useState(false);
+  const [showRevenueForm, setShowRevenueForm] = useState(false);
 
   const toggleChat = () => {
     setShowChat(!showChat);
+    setOverlay(!overlay);
+  };
+
+  const toggleRiderForm = () => {
+    setShowRiderForm(!showRiderForm);
+    setOverlay(!overlay);
+  };
+  const toggleRepresentator = () => {
+    setShowRepresentator(!showRepresentator);
+    setOverlay(!overlay);
+  };
+
+  const toggleRevenueForm = () => {
+    setShowRevenueForm(!showRevenueForm);
     setOverlay(!overlay);
   };
 
@@ -29,14 +52,46 @@ function App() {
         <Route element={<Home />} path="/" />
         <Route element={<OrderHistory />} path="/order-history" />
         <Route element={<Orders />} path="/orders" />
-        <Route element={<Help />} path="/help" />
-        <Route element={<Revenue />} path="/revenue" />
-        <Route element={<Rider />} path="/riders" />
+        <Route
+          element={<Help toggleRepresentator={toggleRepresentator} />}
+          path="/help"
+        />
+        <Route
+          element={<Revenue toggleRevenueForm={toggleRevenueForm} />}
+          path="/revenue"
+        />
+        <Route
+          element={<Rider toggleRiderForm={toggleRiderForm} />}
+          path="/riders"
+        />
+        <Route element={<HelpForm />} path="/help-form" />
+        <Route element={<Menu />} path="/menu" />
+        <Route element={<AddMenu />} path="/add-menu" />
       </Routes>
+
       {showChat && (
         <>
           {createPortal(<Chat />, document.getElementById("modal"))}
-          <Overlay toggleChat={toggleChat} />
+          <Overlay toggleOverlay={toggleChat} />
+        </>
+      )}
+      {showRiderForm && (
+        <>
+          {createPortal(<RiderForm />, document.getElementById("modal"))}
+          <Overlay toggleOverlay={toggleRiderForm} />
+        </>
+      )}
+      {showRepresentator && (
+        <>
+          {createPortal(<Representator />, document.getElementById("modal"))}
+          <Overlay toggleOverlay={toggleRepresentator} />
+        </>
+      )}
+
+      {showRevenueForm && (
+        <>
+          {createPortal(<AddRevenue />, document.getElementById("modal"))}
+          <Overlay toggleOverlay={toggleRevenueForm} />
         </>
       )}
     </>
