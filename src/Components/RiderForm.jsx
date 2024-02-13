@@ -35,7 +35,12 @@ const RiderForm = () => {
               <label htmlFor="name" className="text-sm font-bold">
                 Name
               </label>
-              <input type="text" name="name" id="name" className="rounded-lg" />
+              <input
+                type="text"
+                name="name"
+                id="name"
+                className="rounded-lg focus:border-0 focus:outline-yellow-500"
+              />
             </div>
           </div>
           <div className="mb-3 ">
@@ -47,7 +52,7 @@ const RiderForm = () => {
                 type="text"
                 name="contact"
                 id="contact"
-                className="rounded-lg"
+                className="rounded-lg focus:border-0 focus:outline-yellow-500"
               />
             </div>
           </div>
@@ -60,7 +65,7 @@ const RiderForm = () => {
                 type="text"
                 name="password"
                 id="password"
-                className="rounded-lg"
+                className="rounded-lg focus:border-0 focus:outline-yellow-500"
               />
             </div>
           </div>
@@ -69,7 +74,12 @@ const RiderForm = () => {
               <label htmlFor="ID" className="text-sm font-bold">
                 ID
               </label>
-              <input type="text" name="ID" id="ID" className="rounded-lg" />
+              <input
+                type="text"
+                name="ID"
+                id="ID"
+                className="rounded-lg focus:border-0 focus:outline-yellow-500"
+              />
             </div>
           </div>
           <div className="mb-3 ">
@@ -79,7 +89,7 @@ const RiderForm = () => {
               </label>
               <label
                 htmlFor="upload"
-                className="cursor-pointer bg-textActive shadow-2xl text-white px-4 py-2 w-[100px] text-center rounded-lg mt-2 font-bold"
+                className="cursor-pointer bg-textActive shadow-2xl text-white px-4 py-2 w-[100px] text-center rounded-lg mt-2 font-bold "
               >
                 Browse
                 <input

@@ -40,7 +40,7 @@ const AddMenu = () => {
               type="text"
               name="productName"
               id="productName"
-              className="rounded-lg"
+              className="rounded-lg border border-gray-500 py-2 focus:outline-yellow-500 pl-2 focus:border-0"
             />
           </div>
           <div className="flex flex-col gap-y-2 md:flex-row md:justify-between md:items-center">
@@ -51,7 +51,7 @@ const AddMenu = () => {
               type="text"
               name="productPrice"
               id="productPrice"
-              className="rounded-lg"
+              className="rounded-lg border border-gray-500 py-2 focus:outline-yellow-500 pl-2 focus:border-0"
             />
           </div>
           <div className="flex flex-col gap-y-2 md:flex-row md:justify-between md:items-center">
@@ -64,7 +64,7 @@ const AddMenu = () => {
             <select
               name="productCategory"
               id="productCategory"
-              className="rounded-lg w-full md:w-[61%]"
+              className="rounded-lg w-full md:w-[60%] border border-gray-500 py-2 focus:outline-yellow-500 focus:border-0"
             >
               <option value="Veg">Veg</option>
               <option value="Non-Veg">Non-Veg</option>
@@ -80,7 +80,7 @@ const AddMenu = () => {
             <select
               name="productIngredients"
               id="productIngredients"
-              className="rounded-lg w-full md:w-[61%]"
+              className="rounded-lg w-full md:w-[60%] border border-gray-500 py-2 focus:outline-yellow-500 pl-3 focus:border-0"
             >
               <option value="Veg">Veg</option>
               <option value="Non-Veg">Non-Veg</option>
@@ -93,13 +93,13 @@ const AddMenu = () => {
             >
               Available
             </label>
-            <div className="flex flex-row justify-center items-center mr-auto gap-x-5 pl-36">
+            <div className="flex flex-row justify-center items-center mr-auto gap-x-5 pl-40">
               <div className="flex flex-row justify-center items-center gap-x-2">
                 <input
                   type="radio"
                   name="productAvailable"
                   id="productAvailable"
-                  className="rounded-lg checked:bg-yellow-400 checked:outline-yellow-400"
+                  className="rounded-lg checked:bg-yellow-500 checked:active:bg-yellow-500 checked:focus:bg-yellow-500 checked:outline-yellow-500 checked:hover:bg-yellow-500 h-4 w-4"
                 />
                 <label
                   htmlFor="productAvailable"
@@ -113,7 +113,7 @@ const AddMenu = () => {
                   type="radio"
                   name="productAvailable"
                   id="productAvailable"
-                  className="rounded-lg checked:bg-yellow-400 checked:outline-yellow-400"
+                  className="rounded-lg checked:bg-yellow-500 checked:active:bg-yellow-500 checked:focus:bg-yellow-500 checked:outline-yellow-500 checked:hover:bg-yellow-500 h-4 w-4"
                 />
                 <label
                   htmlFor="productAvailable"
@@ -134,7 +134,7 @@ const AddMenu = () => {
             <textarea
               name="productDescription"
               id="productDescription"
-              className="rounded-lg w-[61%]"
+              className="rounded-lg w-[60%] border border-gray-500 py-2 focus:outline-yellow-500 pl-3 focus:border-0"
             ></textarea>
           </div>
           <div className="flex flex-col gap-y-2 md:flex-row md:justify-between md:items-center">
@@ -151,7 +151,7 @@ const AddMenu = () => {
               />
               <div className="bg-gray-200 w-full rounded-lg flex justify-center items-center p-5 cursor-pointer">
                 {imagePreview ? (
-                  <img src={imagePreview} alt="preview" />
+                  <img src={imagePreview} alt="preview" loading="lazy" />
                 ) : (
                   <p className="text-gray-600 font-medium">Upload Image</p>
                 )}

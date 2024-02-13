@@ -32,7 +32,7 @@ const AddRevenue = () => {
               id="revenueDescription"
               cols="20"
               rows="3"
-              className="rounded-lg"
+              className="rounded-lg focus:border-0 focus:outline-yellow-500"
             ></textarea>
           </div>
           <div className="flex flex-col">
@@ -43,7 +43,7 @@ const AddRevenue = () => {
               type="number"
               name="amount"
               id="amount"
-              className="rounded-lg"
+              className="rounded-lg focus:border-0 focus:outline-yellow-500"
             />
           </div>
         </div>

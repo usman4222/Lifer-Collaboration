@@ -132,7 +132,7 @@ const ChatsLeft = ({ toggleSideBar, openSideBar }) => {
           type="text"
           name="textMessage"
           id="textMessage"
-          className="bg-white p-2 md:p-3 outline-textActive border-2 border-gray-300 rounded-lg fixed xl:bottom-[130px] xl:right-5 w-[72%] lg:w-[57vw] lg:left-64 mx-auto right-[45px] focus:outline-none bottom-[340px] md:bottom-[410px] md:right-24 lg:bottom-96 lg:right-20"
+          className="bg-white p-2 md:p-3 outline-textActive border-2 border-gray-300 rounded-lg absolute  w-[82%] lg:w-[90%] mx-auto right-5 left-5 focus:outline-none bottom-2 md:bottom-2 md:right-16 md:left-16 lg:bottom-2 lg:right-20 lg:left-10"
           placeholder="Type a message"
         />
       </div>

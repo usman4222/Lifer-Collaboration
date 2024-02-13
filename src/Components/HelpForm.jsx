@@ -29,7 +29,7 @@ const HelpForm = () => {
                 </div>
                 <div>
                   <input
-                    className="border border-orange-600 rounded px-3 py-2 w-64 text-sm placeholder-orange-400 focus:outline-none"
+                    className="border border-orange-600 rounded px-3 py-2 w-64 text-sm placeholder-orange-400 focus:outline-orange-400 focus:border-0"
                     type="text"
                     placeholder="Enter Name"
                   />
@@ -43,7 +43,7 @@ const HelpForm = () => {
                 </div>
                 <div>
                   <input
-                    className="border border-orange-600 rounded px-3 py-2 w-64 text-sm placeholder-orange-400 focus:outline-none"
+                    className="border border-orange-600 rounded px-3 py-2 w-64 text-sm placeholder-orange-400  focus:outline-orange-400 focus:border-0"
                     type="text"
                     placeholder="Enter Password"
                   />
@@ -57,7 +57,7 @@ const HelpForm = () => {
                 </div>
                 <div>
                   <input
-                    className="border border-orange-600 rounded px-3 py-2 w-64 text-sm placeholder-orange-400 focus:outline-none"
+                    className="border border-orange-600 rounded px-3 py-2 w-64 text-sm placeholder-orange-400 focus:outline-orange-400 focus:border-0"
                     type="text"
                     placeholder="Cell No. of Rider"
                   />
@@ -71,7 +71,7 @@ const HelpForm = () => {
                 </div>
                 <div>
                   <input
-                    className="border border-orange-600 rounded px-3 py-2 w-64 text-sm placeholder-orange-400 focus:outline-none"
+                    className="border border-orange-600 rounded px-3 py-2 w-64 text-sm placeholder-orange-400 focus:outline-orange-400 focus:border-0"
                     type="text"
                     placeholder="Restaurant ID"
                   />

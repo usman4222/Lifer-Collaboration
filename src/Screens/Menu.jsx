@@ -32,6 +32,7 @@ const Menu = () => {
                 src="/src/assets/rider1.png"
                 alt="Rider"
                 className="rounded-lg w-full"
+                loading="lazy"
               />
               <div className="px-3 py-4">
                 <div className="flex justify-start flex-col mb-3">
@@ -76,6 +77,7 @@ const Menu = () => {
                 src="/src/assets/rider1.png"
                 alt="Rider"
                 className="rounded-lg w-full"
+                loading="lazy"
               />
               <div className="px-3 py-4">
                 <div className="flex justify-start flex-col mb-3">
@@ -120,6 +122,7 @@ const Menu = () => {
                 src="/src/assets/rider1.png"
                 alt="Rider"
                 className="rounded-lg w-full"
+                loading="lazy"
               />
               <div className="px-3 py-4">
                 <div className="flex justify-start flex-col mb-3">
@@ -164,6 +167,7 @@ const Menu = () => {
                 src="/src/assets/rider1.png"
                 alt="Rider"
                 className="rounded-lg w-full"
+                loading="lazy"
               />
               <div className="px-3 py-4">
                 <div className="flex justify-start flex-col mb-3">
@@ -208,6 +212,7 @@ const Menu = () => {
                 src="/src/assets/rider1.png"
                 alt="Rider"
                 className="rounded-lg w-full"
+                loading="lazy"
               />
               <div className="px-3 py-4">
                 <div className="flex justify-start flex-col mb-3">

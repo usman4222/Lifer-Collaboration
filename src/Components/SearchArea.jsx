@@ -10,14 +10,14 @@ const SearchArea = () => {
             type="text"
             name="searchByOrder"
             id="searchByOrder"
-            className="lg:p-2 p-1 w-[250px]  rounded-md placeholder:text-gray-500 outline-none text-[15px] "
+            className="lg:p-2 p-1 w-[250px]  rounded-md placeholder:text-gray-500 border border-gray-500 text-[15px] focus:outline-yellow-500 focus:border-0"
             placeholder="Search By Order Id"
           />
           <CiSearch className="lg:absolute lg:block top-3 right-2 text-gray-500 hidden" />
         </div>
         <select
           name="searchByDateRange"
-          className="lg:p-2 p-1 w-[250px]  rounded-md placeholder:text-gray-500 outline-none text-[15px] bg-white"
+          className="lg:p-2 p-1 w-[250px]  rounded-md placeholder:text-gray-500  text-[15px] bg-white border border-gray-500 focus:outline-yellow-500 focus:border-0"
           id="SearchByDateRange"
         >
           <option value="#">Filter By Date Range</option>

@@ -18,12 +18,14 @@ import Representator from "./Components/Representator";
 import Menu from "./Screens/Menu";
 import AddMenu from "./Screens/AddMenu";
 import AddRevenue from "./Components/AddRevenue";
+import Notification from "./Screens/Notification";
 function App() {
   const [overlay, setOverlay] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [showRiderForm, setShowRiderForm] = useState(false);
   const [showRepresentator, setShowRepresentator] = useState(false);
   const [showRevenueForm, setShowRevenueForm] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
 
   const toggleChat = () => {
     setShowChat(!showChat);
@@ -44,10 +46,15 @@ function App() {
     setOverlay(!overlay);
   };
 
+  const toggleNotification = () => {
+    setShowNotification(!showNotification);
+    setOverlay(!overlay);
+  };
+
   return (
     <>
       <SideBar />
-      <Navbar toggleChat={toggleChat} />
+      <Navbar toggleChat={toggleChat} toggleNotification={toggleNotification} />
       <Routes>
         <Route element={<Home />} path="/" />
         <Route element={<OrderHistory />} path="/order-history" />
@@ -92,6 +99,13 @@ function App() {
         <>
           {createPortal(<AddRevenue />, document.getElementById("modal"))}
           <Overlay toggleOverlay={toggleRevenueForm} />
+        </>
+      )}
+
+      {showNotification && (
+        <>
+          {createPortal(<Notification />, document.getElementById("modal"))}
+          <Overlay toggleOverlay={toggleNotification} />
         </>
       )}
     </>

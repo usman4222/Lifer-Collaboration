@@ -27,6 +27,7 @@ const Rider = ({ toggleRiderForm }) => {
                 src="/src/assets/rider1.png"
                 alt="Rider"
                 className="rounded-lg"
+                loading="lazy"
               />
               <div className="p-4">
                 <div className="flex justify-between mb-2">
@@ -64,6 +65,7 @@ const Rider = ({ toggleRiderForm }) => {
                 src="/src/assets/rider1.png"
                 alt="Rider"
                 className="rounded-lg"
+                loading="lazy"
               />
               <div className="p-4">
                 <div className="flex justify-between mb-2">
@@ -101,6 +103,7 @@ const Rider = ({ toggleRiderForm }) => {
                 src="/src/assets/rider1.png"
                 alt="Rider"
                 className="rounded-lg"
+                loading="lazy"
               />
               <div className="p-4">
                 <div className="flex justify-between mb-2">
@@ -138,6 +141,7 @@ const Rider = ({ toggleRiderForm }) => {
                 src="/src/assets/rider1.png"
                 alt="Rider"
                 className="rounded-lg"
+                loading="lazy"
               />
               <div className="p-4">
                 <div className="flex justify-between mb-2">
@@ -175,6 +179,7 @@ const Rider = ({ toggleRiderForm }) => {
                 src="/src/assets/rider1.png"
                 alt="Rider"
                 className="rounded-lg"
+                loading="lazy"
               />
               <div className="p-4">
                 <div className="flex justify-between mb-2">
