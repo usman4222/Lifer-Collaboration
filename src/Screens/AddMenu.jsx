@@ -64,7 +64,7 @@ const AddMenu = () => {
             <select
               name="productCategory"
               id="productCategory"
-              className="rounded-lg w-full md:w-[60%] border border-gray-500 py-2 focus:outline-yellow-500 focus:border-0"
+              className="rounded-lg w-full md:w-[58%] border border-gray-500 py-2 focus:outline-yellow-500 focus:border-0"
             >
               <option value="Veg">Veg</option>
               <option value="Non-Veg">Non-Veg</option>
@@ -80,7 +80,7 @@ const AddMenu = () => {
             <select
               name="productIngredients"
               id="productIngredients"
-              className="rounded-lg w-full md:w-[60%] border border-gray-500 py-2 focus:outline-yellow-500 pl-3 focus:border-0"
+              className="rounded-lg w-full md:w-[58%] border border-gray-500 py-2 focus:outline-yellow-500 pl-3 focus:border-0"
             >
               <option value="Veg">Veg</option>
               <option value="Non-Veg">Non-Veg</option>
@@ -134,7 +134,7 @@ const AddMenu = () => {
             <textarea
               name="productDescription"
               id="productDescription"
-              className="rounded-lg w-[60%] border border-gray-500 py-2 focus:outline-yellow-500 pl-3 focus:border-0"
+              className="rounded-lg w-[58%] border border-gray-500 py-2 focus:outline-yellow-500 pl-3 focus:border-0"
             ></textarea>
           </div>
           <div className="flex flex-col gap-y-2 md:flex-row md:justify-between md:items-center">
