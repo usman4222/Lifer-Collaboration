@@ -72,7 +72,7 @@ function App() {
           path="/riders"
         />
         <Route element={<HelpForm />} path="/help-form" />
-        <Route element={<Menu />} path="/menu" />
+        <Route element={<Menu />} path="/menu/*" />
         <Route element={<AddMenu />} path="/add-menu" />
       </Routes>
 

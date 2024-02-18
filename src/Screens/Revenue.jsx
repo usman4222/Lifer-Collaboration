@@ -63,7 +63,7 @@ const Revenue = ({ toggleRevenueForm }) => {
                   className="px-6 py-2 bg-white text-gray-600 rounded-lg font-semibold text-lg"
                   onClick={toggleRevenueForm}
                 >
-                  +Add Menu
+                  +Add Revenue
                 </button>
               </div>
               <div>

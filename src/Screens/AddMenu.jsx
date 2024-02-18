@@ -3,7 +3,7 @@ import Wrapper from "../Components/Wrapper";
 import HeaderSection from "../Components/HeaderSection";
 import { FaArrowLeft } from "react-icons/fa";
 
-const AddMenu = () => {
+const AddMenu = ({ edit }) => {
   const [imagePreview, setImagePreview] = useState(null);
 
   const handleImageChange = (e) => {
@@ -29,7 +29,7 @@ const AddMenu = () => {
       />
       <div className="bg-white rounded-lg p-5 w-[95%] md:w-[600px] mx-auto mt-5">
         <h3 className="text-center text-gray-700 text-xl md:text-3xl font-bold mb-8">
-          Add Menu Item
+          {edit ? "Update Menu Item" : "Add Menu Item"}
         </h3>
         <div className="flex flex-col  gap-y-5">
           <div className="flex flex-col gap-y-2 md:justify-between md:items-center md:flex-row">

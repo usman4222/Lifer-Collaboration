@@ -4,11 +4,14 @@ import RIderMenu from "../Components/RIderMenu";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import AddMenu from "./AddMenu";
+import { Routes, Route } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const Menu = () => {
+const MenuPage = () => {
   const navigate = useNavigate();
   const toggleRiderForm = () => {
-    navigate("/add-menu");
+    navigate("/menu/add-menu");
   };
 
   return (
@@ -29,7 +32,7 @@ const Menu = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
             <div className="bg-white rounded-2xl shadow-md ">
               <img
-                src="/src/assets/rider1.png"
+                src="/src/assets/product.png"
                 alt="Rider"
                 className="rounded-lg w-full"
                 loading="lazy"
@@ -58,10 +61,13 @@ const Menu = () => {
                 </div>
                 <div className="flex justify-between">
                   <div>
-                    <button className="bg-blue-500 text-white px-5 py-1 rounded-md flex items-center">
+                    <NavLink
+                      className="bg-blue-500 text-white px-5 py-1 rounded-md flex items-center"
+                      to="/menu/edit-menu"
+                    >
                       <FiEdit className="mr-1" />
                       Edit
-                    </button>
+                    </NavLink>
                   </div>
                   <div>
                     <button className="bg-red-500 text-white px-5 py-1 rounded-md flex items-center">
@@ -74,7 +80,7 @@ const Menu = () => {
             </div>
             <div className="bg-white rounded-2xl shadow-md ">
               <img
-                src="/src/assets/rider1.png"
+                src="/src/assets/product.png"
                 alt="Rider"
                 className="rounded-lg w-full"
                 loading="lazy"
@@ -103,10 +109,13 @@ const Menu = () => {
                 </div>
                 <div className="flex justify-between">
                   <div>
-                    <button className="bg-blue-500 text-white px-5 py-1 rounded-md flex items-center">
+                    <NavLink
+                      className="bg-blue-500 text-white px-5 py-1 rounded-md flex items-center"
+                      to="/menu/edit-menu"
+                    >
                       <FiEdit className="mr-1" />
                       Edit
-                    </button>
+                    </NavLink>
                   </div>
                   <div>
                     <button className="bg-red-500 text-white px-5 py-1 rounded-md flex items-center">
@@ -119,7 +128,7 @@ const Menu = () => {
             </div>
             <div className="bg-white rounded-2xl shadow-md ">
               <img
-                src="/src/assets/rider1.png"
+                src="/src/assets/product.png"
                 alt="Rider"
                 className="rounded-lg w-full"
                 loading="lazy"
@@ -148,10 +157,13 @@ const Menu = () => {
                 </div>
                 <div className="flex justify-between">
                   <div>
-                    <button className="bg-blue-500 text-white px-5 py-1 rounded-md flex items-center">
+                    <NavLink
+                      className="bg-blue-500 text-white px-5 py-1 rounded-md flex items-center"
+                      to="/menu/edit-menu"
+                    >
                       <FiEdit className="mr-1" />
                       Edit
-                    </button>
+                    </NavLink>
                   </div>
                   <div>
                     <button className="bg-red-500 text-white px-5 py-1 rounded-md flex items-center">
@@ -164,7 +176,7 @@ const Menu = () => {
             </div>
             <div className="bg-white rounded-2xl shadow-md ">
               <img
-                src="/src/assets/rider1.png"
+                src="/src/assets/product.png"
                 alt="Rider"
                 className="rounded-lg w-full"
                 loading="lazy"
@@ -193,10 +205,13 @@ const Menu = () => {
                 </div>
                 <div className="flex justify-between">
                   <div>
-                    <button className="bg-blue-500 text-white px-5 py-1 rounded-md flex items-center">
+                    <NavLink
+                      className="bg-blue-500 text-white px-5 py-1 rounded-md flex items-center"
+                      to="/menu/edit-menu"
+                    >
                       <FiEdit className="mr-1" />
                       Edit
-                    </button>
+                    </NavLink>
                   </div>
                   <div>
                     <button className="bg-red-500 text-white px-5 py-1 rounded-md flex items-center">
@@ -209,7 +224,7 @@ const Menu = () => {
             </div>
             <div className="bg-white rounded-2xl shadow-md ">
               <img
-                src="/src/assets/rider1.png"
+                src="/src/assets/product.png"
                 alt="Rider"
                 className="rounded-lg w-full"
                 loading="lazy"
@@ -238,10 +253,13 @@ const Menu = () => {
                 </div>
                 <div className="flex justify-between">
                   <div>
-                    <button className="bg-blue-500 text-white px-5 py-1 rounded-md flex items-center">
+                    <NavLink
+                      className="bg-blue-500 text-white px-5 py-1 rounded-md flex items-center"
+                      to="/menu/edit-menu"
+                    >
                       <FiEdit className="mr-1" />
                       Edit
-                    </button>
+                    </NavLink>
                   </div>
                   <div>
                     <button className="bg-red-500 text-white px-5 py-1 rounded-md flex items-center">
@@ -256,6 +274,16 @@ const Menu = () => {
         </div>
       </div>
     </Wrapper>
+  );
+};
+
+const Menu = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<MenuPage />} />
+      <Route path="/add-menu" element={<AddMenu />} />
+      <Route path="/edit-menu" element={<AddMenu edit={true} />} />
+    </Routes>
   );
 };
 

@@ -18,14 +18,14 @@ const HelpForm = () => {
         <div className="bg-white rounded-lg p-8 max-w-md w-full">
           <div className="md:text-center">
             <h3 className="text-helpForm text-2xl font-semibold mb-6">
-              Add Rider
+              Fill in the Details
             </h3>
           </div>
           <div className="">
             <div className="mb-4">
               <div className="flex flex-col md:flex-row justify-between md:items-center">
                 <div>
-                  <h6 className="text-helpForm text-sm">Name</h6>
+                  <h6 className="text-helpForm text-sm">Restaurant Name</h6>
                 </div>
                 <div>
                   <input
