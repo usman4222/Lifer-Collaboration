@@ -8,11 +8,13 @@ const EditorComponent = () => {
     setEditorContent(content);
   };
 
+  const API_KEY = "5614yqw08gq5wr5tjgn1oe3d4j7sh9g0rub3pm4xv05x78xm";
+
   return (
     <>
       <div className="lg:w-[80%] mx-auto mt-20 w-[95%]">
         <Editor
-          apiKey={import.meta.env.VITE_EDITOR_API_KEY}
+          apiKey={API_KEY}
           init={{
             menubar: false,
             branding: false,
