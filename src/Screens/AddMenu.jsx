@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Wrapper from "../Components/Wrapper";
 import HeaderSection from "../Components/HeaderSection";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaTimes, FaCloudUploadAlt } from "react-icons/fa";
+import SelectCategory from "../Components/SelectCategory";
+import SelectVariants from "../Components/SelectVariants";
 
 const AddMenu = ({ edit }) => {
-  const [imagePreview, setImagePreview] = useState(null);
+  const [images, setImages] = useState([]);
+  const [openCategory, setOpenCategory] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [showCategoryInput, setShowCategoryInput] = useState(false);
+  const [selectedVariant, setSelectedVariant] = useState("");
+  const [showVariantInput, setShowVariantIput] = useState(false);
+  const [openVariants, setOpenVariants] = useState(false);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -13,154 +21,229 @@ const AddMenu = ({ edit }) => {
       const reader = new FileReader();
 
       reader.onloadend = () => {
-        setImagePreview(reader.result);
+        setImages((prevImages) => [...prevImages, reader.result]);
       };
 
       reader.readAsDataURL(file);
     }
   };
+
+  const toggleCategoryInput = () => {
+    setShowCategoryInput(!showCategoryInput);
+    if (openCategory) {
+      setOpenCategory(!openCategory);
+    }
+  };
+
+  const toggleVariantInput = () => {
+    setShowVariantIput(!showVariantInput);
+    if (openVariants) {
+      setOpenVariants(!openVariants);
+    }
+  };
+
+  const handleRemoveImage = (index) => {
+    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  };
+
+  const toggleCategory = () => {
+    setOpenCategory(!openCategory);
+  };
+
+  const toggleVariants = () => {
+    setOpenVariants(!openVariants);
+  };
+
+  const handleCategoryChange = (newCategory) => {
+    setSelectedCategory(newCategory);
+    setOpenCategory(false);
+    if (showCategoryInput) {
+      setShowCategoryInput(false);
+    }
+  };
+
+  const handleVariantChange = (newVariant) => {
+    setSelectedVariant(newVariant);
+    setOpenVariants(false);
+    if (showVariantInput) {
+      setShowVariantIput(false);
+    }
+  };
+
   return (
     <Wrapper>
-      <HeaderSection heading="Add Menu" para="Add Menu Items" />
-      <FaArrowLeft
-        size={22}
-        className="text-gray-800  mt-3 cursor-pointer ml-5 lg:ml-0"
-        onClick={() => window.history.back()}
+      <HeaderSection
+        heading="Menu Control Panel"
+        para="Simplified Menu Management"
       />
-      <div className="bg-white rounded-lg p-5 w-[95%] md:w-[600px] mx-auto mt-5">
-        <h3 className="text-center text-gray-700 text-xl md:text-3xl font-bold mb-8">
-          {edit ? "Update Menu Item" : "Add Menu Item"}
-        </h3>
-        <div className="flex flex-col  gap-y-5">
-          <div className="flex flex-col gap-y-2 md:justify-between md:items-center md:flex-row">
-            <label htmlFor="productName" className="font-medium text-gray-800">
-              Product Name
-            </label>
-            <input
-              type="text"
-              name="productName"
-              id="productName"
-              className="rounded-lg border border-gray-500 py-2 focus:outline-yellow-500 pl-2 focus:border-0"
-            />
+      <div className="grid grid-cols-12  gap-x-5 md:mx-20 mt-10 mx-4 gap-y-5">
+        <div className="md:col-span-7 col-span-12 flex flex-col justify-start items-start gap-y-5">
+          <div className="flex flex-row text-gray-700 gap-x-5 justify-center items-center font-medium">
+            <FaArrowLeft size={22} />
+            <h3 className="text-2xl ">Update Menu Item</h3>
           </div>
-          <div className="flex flex-col gap-y-2 md:flex-row md:justify-between md:items-center">
-            <label htmlFor="productPrice" className="font-medium text-gray-800">
-              Product Price
-            </label>
-            <input
-              type="text"
-              name="productPrice"
-              id="productPrice"
-              className="rounded-lg border border-gray-500 py-2 focus:outline-yellow-500 pl-2 focus:border-0"
-            />
-          </div>
-          <div className="flex flex-col gap-y-2 md:flex-row md:justify-between md:items-center">
-            <label
-              htmlFor="productCategory"
-              className="font-medium text-gray-800"
-            >
-              Category
-            </label>
-            <select
-              name="productCategory"
-              id="productCategory"
-              className="rounded-lg w-full md:w-[58%] border border-gray-500 py-2 focus:outline-yellow-500 focus:border-0"
-            >
-              <option value="Veg">Veg</option>
-              <option value="Non-Veg">Non-Veg</option>
-            </select>
-          </div>
-          <div className="flex flex-col gap-y-2 md:flex-row md:justify-between md:items-center">
-            <label
-              htmlFor="productIngredients"
-              className="font-medium text-gray-800"
-            >
-              Ingredients
-            </label>
-            <select
-              name="productIngredients"
-              id="productIngredients"
-              className="rounded-lg w-full md:w-[58%] border border-gray-500 py-2 focus:outline-yellow-500 pl-3 focus:border-0"
-            >
-              <option value="Veg">Veg</option>
-              <option value="Non-Veg">Non-Veg</option>
-            </select>
-          </div>
-          <div className="flex flex-row justify-between items-center">
-            <label
-              htmlFor="productAvailable"
-              className="font-medium text-gray-800"
-            >
-              Available
-            </label>
-            <div className="flex flex-row justify-center items-center mr-auto gap-x-5 pl-40">
-              <div className="flex flex-row justify-center items-center gap-x-2">
+          <div className="flex flex-col justify-start items-start gap-y-5 w-full">
+            <div className="bg-white rounded-lg p-5 flex flex-col gap-y-5 w-full">
+              <div className="flex flex-col justify-start items-start">
+                <label htmlFor="productName" className="mb-1">
+                  Product Name
+                </label>
                 <input
-                  type="radio"
-                  name="productAvailable"
-                  id="productAvailable"
-                  className="rounded-lg checked:bg-yellow-500 checked:active:bg-yellow-500 checked:focus:bg-yellow-500 checked:outline-yellow-500 checked:hover:bg-yellow-500 h-4 w-4"
+                  type="text"
+                  name="productName"
+                  id="productName"
+                  className="form-input rounded-md w-full"
                 />
+              </div>
+              <div className="flex flex-col justify-start items-start">
+                <label htmlFor="productDescription" className="mb-1">
+                  Product Description
+                </label>
+                <textarea
+                  name="productDescription"
+                  id="productDescription"
+                  className="form-textarea rounded-md w-full"
+                />
+              </div>
+            </div>
+            <div className="bg-white rounded-lg p-5 flex flex-col w-full gap-y-4">
+              <label htmlFor="images">Images</label>
+              <div className="border-2 border-dashed p-2">
                 <label
-                  htmlFor="productAvailable"
-                  className="font-medium text-gray-800"
+                  htmlFor="productImages"
+                  className="cursor-pointer flex flex-col justify-center items-center gap-y-1 opacity-60 "
                 >
-                  Yes
+                  <FaCloudUploadAlt size={25} />
+                  <h4>Upload Images</h4>
+                  <span className="text-sm text-gray-500">
+                    Select one or more images
+                  </span>
+                  <input
+                    type="file"
+                    className="hidden"
+                    id="productImages"
+                    multiple
+                    onChange={handleImageChange}
+                  />
                 </label>
               </div>
-              <div className="flex flex-row justify-center items-center gap-x-2">
+              {images && (
+                <div className="flex flex-row justify-start items-center gap-x-3">
+                  {images?.map((img, index) => (
+                    <div
+                      className="w-24 h-24 border-2 border-dashed relative"
+                      key={index}
+                    >
+                      <img
+                        src={img}
+                        alt="Product Image"
+                        className="w-full h-full object-cover"
+                      />
+                      <FaTimes
+                        className="absolute top-0 right-0 cursor-pointer"
+                        size={20}
+                        onClick={() => handleRemoveImage(index)}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col md:col-span-5 col-span-12  md:mt-14 gap-y-5">
+          <div className="bg-white p-5 flex flex-col rounded-lg w-full gap-y-3">
+            <div>
+              <label htmlFor="Product Category">Product Category </label>
+              <SelectCategory
+                toggleCategory={toggleCategory}
+                openCategory={openCategory}
+                selectedCategory={selectedCategory}
+                handleCategoryChange={handleCategoryChange}
+                toggleCategoryInput={toggleCategoryInput}
+              />
+            </div>
+            {showCategoryInput && (
+              <div className="relative">
                 <input
-                  type="radio"
-                  name="productAvailable"
-                  id="productAvailable"
-                  className="rounded-lg checked:bg-yellow-500 checked:active:bg-yellow-500 checked:focus:bg-yellow-500 checked:outline-yellow-500 checked:hover:bg-yellow-500 h-4 w-4"
+                  type="text"
+                  name="newCategory"
+                  id="newCategory"
+                  className="px-3 py-1 rounded-md w-full"
+                  placeholder="Name the category"
                 />
-                <label
-                  htmlFor="productAvailable"
-                  className="font-medium text-gray-800 "
-                >
-                  No
+                <button className="px-3 bg-textActive text-white rounded-md absolute top-[5px] right-1.5 hover:bg-textActiveHover transition-all duration-500 ease-in-out">
+                  Add
+                </button>
+              </div>
+            )}
+          </div>
+          <div className="bg-white p-5 flex flex-col rounded-lg">
+            <div className="flex flex-col mb-2">
+              <label htmlFor="Variants">Variants</label>
+              <SelectVariants
+                toggleVariants={toggleVariants}
+                openVariants={openVariants}
+                selectedVariant={selectedVariant}
+                handleVariantChange={handleVariantChange}
+                toggleVariantInput={toggleVariantInput}
+              />
+            </div>
+            {showVariantInput && (
+              <div className="relative">
+                <input
+                  type="text"
+                  name="newVariant"
+                  id="newVariant"
+                  className="px-3 py-1 rounded-md w-full"
+                  placeholder="Name the variant"
+                />
+                <button className="px-3 bg-textActive text-white rounded-md absolute top-[5px] right-1.5 hover:bg-textActiveHover transition-all duration-500 ease-in-out">
+                  Add
+                </button>
+              </div>
+            )}
+            <div className="flex flex-col gap-y-4">
+              <h5 className="font-medium mt-8">Pricing</h5>
+              <div className="grid grid-cols-2 gap-x-2 mt-3">
+                <div className="flex flex-col">
+                  <label htmlFor="price" className="mb-1 text-sm">
+                    Price
+                  </label>
+                  <input
+                    type="number"
+                    name="price"
+                    id="price"
+                    className="px-3 py-1 rounded-md"
+                    placeholder="$ 0.00"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label htmlFor="discount" className="mb-1 text-sm">
+                    Discount
+                  </label>
+                  <input
+                    type="text"
+                    name="discount"
+                    id="discount"
+                    className="px-3 py-1 rounded-md"
+                    placeholder="e.g.  20%"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="itemCost" className="mb-1 text-sm">
+                  Cost Per Item
                 </label>
+                <input
+                  type="number"
+                  name="itemCost"
+                  id="itemCost"
+                  className="px-3 py-1 rounded-md"
+                />
               </div>
             </div>
           </div>
-          <div className="flex flex-row justify-between items-center">
-            <label
-              htmlFor="productDescription"
-              className="font-medium text-gray-800"
-            >
-              Product Description
-            </label>
-            <textarea
-              name="productDescription"
-              id="productDescription"
-              className="rounded-lg w-[58%] border border-gray-500 py-2 focus:outline-yellow-500 pl-3 focus:border-0"
-            ></textarea>
-          </div>
-          <div className="flex flex-col gap-y-2 md:flex-row md:justify-between md:items-center">
-            <label htmlFor="productImage" className="font-medium text-gray-800">
-              Product Image
-            </label>
-            <label htmlFor="imageUpload" className="md:w-[61%] w-full">
-              <input
-                type="file"
-                name="imageUpload"
-                id="imageUpload"
-                className="hidden"
-                onChange={handleImageChange}
-              />
-              <div className="bg-gray-200 w-full rounded-lg flex justify-center items-center p-5 cursor-pointer">
-                {imagePreview ? (
-                  <img src={imagePreview} alt="preview" loading="lazy" />
-                ) : (
-                  <p className="text-gray-600 font-medium">Upload Image</p>
-                )}
-              </div>
-            </label>
-          </div>
-          <button className="bg-textActive py-2 text-white rounded-lg font-semibold">
-            Add Item
-          </button>
         </div>
       </div>
     </Wrapper>

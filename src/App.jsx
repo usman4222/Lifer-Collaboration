@@ -19,6 +19,7 @@ import Menu from "./Screens/Menu";
 import AddMenu from "./Screens/AddMenu";
 import AddRevenue from "./Components/AddRevenue";
 import Notification from "./Screens/Notification";
+import NoPageFound from "./Screens/NoPageFound.jsx";
 function App() {
   const [overlay, setOverlay] = useState(false);
   const [showChat, setShowChat] = useState(false);

@@ -18,7 +18,8 @@ export default {
       colors: {
         'textActive': '#ffb100',
         'primary': '#464255',
-        'helpForm': '#C16E31'
+        'helpForm': '#C16E31',
+        'textActiveHover': '#dfb600',
       }
     },
   },

@@ -25,7 +25,7 @@ const HelpForm = () => {
             <div className="mb-4">
               <div className="flex flex-col md:flex-row justify-between md:items-center">
                 <div>
-                  <h6 className="text-helpForm text-sm">Restaurant Name</h6>
+                  <h6 className="text-helpForm text-sm">Name</h6>
                 </div>
                 <div>
                   <input
@@ -39,13 +39,13 @@ const HelpForm = () => {
             <div className="mb-4">
               <div className="flex justify-between md:items-center flex-col md:flex-row">
                 <div>
-                  <h6 className="text-helpForm text-sm">Password</h6>
+                  <h6 className="text-helpForm text-sm">Email</h6>
                 </div>
                 <div>
                   <input
                     className="border border-helpForm rounded px-3 py-2 w-64 text-sm placeholder-helpForm  focus:outline-helpForm focus:border-0"
-                    type="text"
-                    placeholder="Enter Password"
+                    type="email"
+                    placeholder="Enter Email"
                   />
                 </div>
               </div>
@@ -53,13 +53,13 @@ const HelpForm = () => {
             <div className="mb-4">
               <div className="flex justify-between md:items-center flex-col md:flex-row">
                 <div>
-                  <h6 className="text-helpForm text-sm">Contact No</h6>
+                  <h6 className="text-helpForm text-sm">Subject</h6>
                 </div>
                 <div>
                   <input
                     className="border border-helpForm rounded px-3 py-2 w-64 text-sm placeholder-helpForm  focus:outline-helpForm focus:border-0"
                     type="text"
-                    placeholder="Cell No. of Rider"
+                    placeholder="Enter Subject"
                   />
                 </div>
               </div>
@@ -67,13 +67,43 @@ const HelpForm = () => {
             <div className="mb-4">
               <div className="flex justify-between md:items-center flex-col md:flex-row">
                 <div>
-                  <h6 className="text-helpForm text-sm">ID</h6>
+                  <h6 className="text-helpForm text-sm">Message</h6>
+                </div>
+                <div>
+                  <textarea
+                    className="border border-helpForm rounded px-3 py-2 w-64 text-sm placeholder-helpForm  focus:outline-helpForm focus:border-0"
+                    placeholder="Enter Message"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="mb-4">
+              <div className="flex justify-between md:items-center flex-col md:flex-row">
+                <div>
+                  <h6 className="text-helpForm text-sm">Ticket Priority </h6>
+                </div>
+                <div>
+                  <select
+                    name="ticketpriority"
+                    id="ticketpriority"
+                    className="border border-helpForm rounded px-3 py-2 w-64 text-sm placeholder-helpForm  focus:outline-helpForm focus:border-0"
+                  >
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className="mb-4">
+              <div className="flex justify-between md:items-center flex-col md:flex-row">
+                <div>
+                  <h6 className="text-helpForm text-sm">Attachment</h6>
                 </div>
                 <div>
                   <input
                     className="border border-helpForm rounded px-3 py-2 w-64 text-sm placeholder-helpForm  focus:outline-helpForm focus:border-0"
-                    type="text"
-                    placeholder="Restaurant ID"
+                    type="file"
                   />
                 </div>
               </div>

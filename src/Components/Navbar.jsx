@@ -5,6 +5,8 @@ import { HiMiniBars3BottomLeft } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
 
 const Navbar = ({ toggleChat, toggleNotification }) => {
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+
   const handleSidebarToggle = () => {
     const sidebar = document.getElementById("sidebar");
     const overlay = document.getElementById("overlay");
@@ -46,11 +48,25 @@ const Navbar = ({ toggleChat, toggleNotification }) => {
           <span className="text-[15px]">Welcome,{"   "}</span>
           <span className="font-semibold">Restaurant</span>
         </div>
-        <img
-          src="/src/assets/profile.png"
-          className="w-[50px] h-[50px] rounded-full"
-          alt=""
-        />
+        <div className="relative">
+          <img
+            src="/src/assets/profile.png"
+            className="w-[50px] h-[50px] rounded-full cursor-pointer"
+            alt="Profile Image"
+            onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+          />
+
+          <div
+            className={`px-5 py-3 bg-white rounded-md absolute top-[50px] right-2 transition-all duration-500 ease-in-out ${
+              showProfileDropdown ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <ul className="flex flex-col gap-y-3">
+              <li className="cursor-pointer">Profile</li>
+              <li className="cursor-pointer">Logout</li>
+            </ul>
+          </div>
+        </div>
         <div
           id="overlay"
           className="w-full h-full absolute top-0 left-0 bg-[rgba(0,0,0,0.5)] hidden z-10"

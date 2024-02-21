@@ -40,13 +40,18 @@ const MenuPage = () => {
               <div className="px-3 py-4">
                 <div className="flex justify-start flex-col mb-3">
                   <div className="flex flex-row justify-between">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col gap-y-3">
                       <span className="text-gray-800 font-bold">
                         Spicy Beast Burger
                       </span>
-                      <span className="text-green-500 text-sm font-bold before:content-[''] before:mr-1 before:h-2 before:w-2 before:bg-green-500 before:inline-block before:rounded-full ">
-                        Available
-                      </span>
+                      <select
+                        name="availability"
+                        id="availability"
+                        className="form-select rounded-2xl py-0"
+                      >
+                        <option value="available">Available</option>
+                        <option value="unavailable">Unavailable</option>
+                      </select>
                     </div>
                     <div className="bg-yellow-500 text-white w-16 h-7 rounded-2xl text-center text-sm flex justify-center items-center">
                       $10.00
@@ -88,13 +93,18 @@ const MenuPage = () => {
               <div className="px-3 py-4">
                 <div className="flex justify-start flex-col mb-3">
                   <div className="flex flex-row justify-between">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col gap-y-3">
                       <span className="text-gray-800 font-bold">
                         Spicy Beast Burger
                       </span>
-                      <span className="text-green-500 text-sm font-bold before:content-[''] before:mr-1 before:h-2 before:w-2 before:bg-green-500 before:inline-block before:rounded-full ">
-                        Available
-                      </span>
+                      <select
+                        name="availability"
+                        id="availability"
+                        className="form-select rounded-2xl py-0"
+                      >
+                        <option value="available">Available</option>
+                        <option value="unavailable">Unavailable</option>
+                      </select>
                     </div>
                     <div className="bg-yellow-500 text-white w-16 h-7 rounded-2xl text-center text-sm flex justify-center items-center">
                       $10.00
@@ -136,13 +146,18 @@ const MenuPage = () => {
               <div className="px-3 py-4">
                 <div className="flex justify-start flex-col mb-3">
                   <div className="flex flex-row justify-between">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col gap-y-3">
                       <span className="text-gray-800 font-bold">
                         Spicy Beast Burger
                       </span>
-                      <span className="text-green-500 text-sm font-bold before:content-[''] before:mr-1 before:h-2 before:w-2 before:bg-green-500 before:inline-block before:rounded-full ">
-                        Available
-                      </span>
+                      <select
+                        name="availability"
+                        id="availability"
+                        className="form-select rounded-2xl py-0"
+                      >
+                        <option value="available">Available</option>
+                        <option value="unavailable">Unavailable</option>
+                      </select>
                     </div>
                     <div className="bg-yellow-500 text-white w-16 h-7 rounded-2xl text-center text-sm flex justify-center items-center">
                       $10.00
@@ -184,13 +199,18 @@ const MenuPage = () => {
               <div className="px-3 py-4">
                 <div className="flex justify-start flex-col mb-3">
                   <div className="flex flex-row justify-between">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col gap-y-3">
                       <span className="text-gray-800 font-bold">
                         Spicy Beast Burger
                       </span>
-                      <span className="text-green-500 text-sm font-bold before:content-[''] before:mr-1 before:h-2 before:w-2 before:bg-green-500 before:inline-block before:rounded-full ">
-                        Available
-                      </span>
+                      <select
+                        name="availability"
+                        id="availability"
+                        className="form-select rounded-2xl py-0"
+                      >
+                        <option value="available">Available</option>
+                        <option value="unavailable">Unavailable</option>
+                      </select>
                     </div>
                     <div className="bg-yellow-500 text-white w-16 h-7 rounded-2xl text-center text-sm flex justify-center items-center">
                       $10.00
@@ -232,13 +252,18 @@ const MenuPage = () => {
               <div className="px-3 py-4">
                 <div className="flex justify-start flex-col mb-3">
                   <div className="flex flex-row justify-between">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col gap-y-3">
                       <span className="text-gray-800 font-bold">
                         Spicy Beast Burger
                       </span>
-                      <span className="text-green-500 text-sm font-bold before:content-[''] before:mr-1 before:h-2 before:w-2 before:bg-green-500 before:inline-block before:rounded-full ">
-                        Available
-                      </span>
+                      <select
+                        name="availability"
+                        id="availability"
+                        className="form-select rounded-2xl py-0"
+                      >
+                        <option value="available">Available</option>
+                        <option value="unavailable">Unavailable</option>
+                      </select>
                     </div>
                     <div className="bg-yellow-500 text-white w-16 h-7 rounded-2xl text-center text-sm flex justify-center items-center">
                       $10.00
@@ -278,11 +303,35 @@ const MenuPage = () => {
 };
 
 const Menu = () => {
+  const dummyData = {
+    name: "Spicy Beast Burger",
+    category: "Snacks",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, doloribus.",
+    variants: [
+      {
+        name: "Small",
+        price: 10,
+      },
+      {
+        name: "Medium",
+        price: 15,
+      },
+      {
+        name: "Large",
+        price: 20,
+      },
+    ],
+  };
+
   return (
     <Routes>
       <Route path="/" element={<MenuPage />} />
       <Route path="/add-menu" element={<AddMenu />} />
-      <Route path="/edit-menu" element={<AddMenu edit={true} />} />
+      <Route
+        path="/edit-menu"
+        element={<AddMenu data={dummyData} edit={true} />}
+      />
     </Routes>
   );
 };

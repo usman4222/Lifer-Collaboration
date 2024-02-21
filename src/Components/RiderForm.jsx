@@ -45,6 +45,19 @@ const RiderForm = () => {
           </div>
           <div className="mb-3 ">
             <div className="flex flex-col">
+              <label htmlFor="email" className="text-sm font-bold">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                className="rounded-lg focus:border-0 focus:outline-yellow-500"
+              />
+            </div>
+          </div>
+          <div className="mb-3 ">
+            <div className="flex flex-col">
               <label htmlFor="contact" className="text-sm font-bold">
                 Contact
               </label>
@@ -69,19 +82,7 @@ const RiderForm = () => {
               />
             </div>
           </div>
-          <div className="mb-3 ">
-            <div className="flex flex-col">
-              <label htmlFor="ID" className="text-sm font-bold">
-                ID
-              </label>
-              <input
-                type="text"
-                name="ID"
-                id="ID"
-                className="rounded-lg focus:border-0 focus:outline-yellow-500"
-              />
-            </div>
-          </div>
+
           <div className="mb-3 ">
             <div className="flex flex-col">
               <label htmlFor="label" className="text-sm font-bold">
