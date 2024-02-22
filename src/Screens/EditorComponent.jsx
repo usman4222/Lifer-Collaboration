@@ -12,7 +12,7 @@ const EditorComponent = () => {
 
   return (
     <>
-      <div className="lg:w-[80%] mx-auto mt-20 w-[95%]">
+      <div className="lg:w-[100%] lg:h-[10%] mx-auto mt-8 w-[95%]">
         <Editor
           apiKey={API_KEY}
           init={{
@@ -26,12 +26,12 @@ const EditorComponent = () => {
           initialValue=""
         />
       </div>
-      <button
+      {/* <button
         onClick={saveEditorContent}
         className="bg-gray-300 px-4 py-1.5 rounded-lg text-center float-right"
       >
         Save
-      </button>
+      </button> */}
 
       {editorContent && (
         <div dangerouslySetInnerHTML={{ __html: editorContent }} />

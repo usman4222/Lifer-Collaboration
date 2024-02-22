@@ -20,6 +20,7 @@ import AddMenu from "./Screens/AddMenu";
 import AddRevenue from "./Components/AddRevenue";
 import Notification from "./Screens/Notification";
 import NoPageFound from "./Screens/NoPageFound.jsx";
+import EditorComponent from "./Screens/EditorComponent.jsx";
 function App() {
   const [overlay, setOverlay] = useState(false);
   const [showChat, setShowChat] = useState(false);
@@ -75,6 +76,7 @@ function App() {
         <Route element={<HelpForm />} path="/help-form" />
         <Route element={<Menu />} path="/menu/*" />
         <Route element={<AddMenu />} path="/add-menu" />
+        {/* <Route element={<EditorComponent />} path="/edit" /> */}
       </Routes>
 
       {showChat && (

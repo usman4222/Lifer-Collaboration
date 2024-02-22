@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Wrapper from "../Components/Wrapper";
 import HeaderSection from "../Components/HeaderSection";
 import { IoMdReturnLeft } from "react-icons/io";
+import EditorComponent from "../Screens/EditorComponent";
 
 const HelpForm = () => {
   return (
@@ -17,100 +18,94 @@ const HelpForm = () => {
       <div className="flex justify-center items-center md:mt-[-20px] mt-10 mx-5">
         <div className="bg-white rounded-lg p-8 max-w-md w-full">
           <div className="md:text-center">
-            <h3 className="text-helpForm text-2xl font-semibold mb-6">
-              Fill in the Details
+            <h3 className="text-helpForm text-2xl font-semibold mb-10">
+              Ticket Request Form
             </h3>
           </div>
           <div className="">
             <div className="mb-4">
               <div className="flex flex-col md:flex-row justify-between md:items-center">
                 <div>
-                  <h6 className="text-helpForm text-sm">Name</h6>
+                  <h6 className="text-[#000000] text-sm font-bold">Email</h6>
+                </div>
+                <div>
+                  <div>
+                    <h6 className="text-[#000000] text-sm pr-16">Restaurant@gmail.com</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mb-4">
+              <div className="flex justify-between md:items-center flex-col md:flex-row">
+                <div>
+                  <h6 className="text-[#000000] text-sm font-bold">Restaurant Name </h6>
+                </div>
+                <div>
+                  <div>
+                    <h6 className="text-[#000000] text-sm pr-36">Mcdonald’s</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr className="border-t bg-yellow-500" />
+            <div className="mb-4 mt-5">
+              <div className="md:items-center flex-col md:flex-row">
+                <div className="pb-5">
+                  <h6 className="text-[#000] text-sm font-bold">Subject</h6>
                 </div>
                 <div>
                   <input
-                    className="border border-helpForm rounded px-3 py-2 w-64 text-sm placeholder-helpForm focus:outline-helpForm focus:border-0"
+                    className="rounded px-3 py-2 w-[220px] md:w-[380px] text-sm border border-black focus:border-black focus:outline-none focus:ring-0"
                     type="text"
-                    placeholder="Enter Name"
+                    placeholder="Enter the subject of the ticket"
                   />
                 </div>
               </div>
             </div>
-            <div className="mb-4">
-              <div className="flex justify-between md:items-center flex-col md:flex-row">
+            <div className="mb-4 py-3">
+              <div className="flex md:items-center flex-col md:flex-row">
                 <div>
-                  <h6 className="text-helpForm text-sm">Email</h6>
+                  <h6 className="text-[#000] text-sm text-left font-bold">Priority</h6>
                 </div>
-                <div>
-                  <input
-                    className="border border-helpForm rounded px-3 py-2 w-64 text-sm placeholder-helpForm  focus:outline-helpForm focus:border-0"
-                    type="email"
-                    placeholder="Enter Email"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="mb-4">
-              <div className="flex justify-between md:items-center flex-col md:flex-row">
-                <div>
-                  <h6 className="text-helpForm text-sm">Subject</h6>
-                </div>
-                <div>
-                  <input
-                    className="border border-helpForm rounded px-3 py-2 w-64 text-sm placeholder-helpForm  focus:outline-helpForm focus:border-0"
-                    type="text"
-                    placeholder="Enter Subject"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="mb-4">
-              <div className="flex justify-between md:items-center flex-col md:flex-row">
-                <div>
-                  <h6 className="text-helpForm text-sm">Message</h6>
-                </div>
-                <div>
-                  <textarea
-                    className="border border-helpForm rounded px-3 py-2 w-64 text-sm placeholder-helpForm  focus:outline-helpForm focus:border-0"
-                    placeholder="Enter Message"
-                  />
+                <div className=" flex pl-20">
+                  <div>
+                    <input
+                      type="radio"
+                      className="form-radio text-yellow-500 focus:ring-yellow-500"
+                      id="option1"
+                      name="radioGroup"
+                      value="option1"
+                      checked
+                    />
+                    <label htmlFor="option1" className="ml-2 text-gray-700 pr-5">Normal</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      className="form-radio text-yellow-500 focus:ring-yellow-500"
+                      id="option2"
+                      name="radioGroup"
+                      value="option2"
+                    />
+                    <label htmlFor="option2" className="ml-2 text-gray-700">Urgent</label>
+                  </div>
+
                 </div>
               </div>
             </div>
             <div className="mb-4">
-              <div className="flex justify-between md:items-center flex-col md:flex-row">
+              <div className=" md:items-center flex-col md:flex-row">
                 <div>
-                  <h6 className="text-helpForm text-sm">Ticket Priority </h6>
+                  <h6 className="text-[#000] font-bold text-sm">Description</h6>
                 </div>
                 <div>
-                  <select
-                    name="ticketpriority"
-                    id="ticketpriority"
-                    className="border border-helpForm rounded px-3 py-2 w-64 text-sm placeholder-helpForm  focus:outline-helpForm focus:border-0"
-                  >
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                  </select>
+                  <EditorComponent />
                 </div>
               </div>
             </div>
-            <div className="mb-4">
-              <div className="flex justify-between md:items-center flex-col md:flex-row">
-                <div>
-                  <h6 className="text-helpForm text-sm">Attachment</h6>
-                </div>
-                <div>
-                  <input
-                    className="border border-helpForm rounded px-3 py-2 w-64 text-sm placeholder-helpForm  focus:outline-helpForm focus:border-0"
-                    type="file"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="md:text-right">
-              <button className="bg-helpForm text-white w-64 px-4 py-2 rounded-lg font-semibold text-sm">
-                Add
+            <div className="md:text-right flex justify-center">
+              <button className="bg-[#FFB100] text-white w-44 px-4 py-3 rounded-lg font-semibold text-sm">
+                Create
               </button>
             </div>
           </div>
