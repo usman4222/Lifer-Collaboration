@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 import profil from "../assets/profil.png";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 
 const SignUp = () => {
@@ -12,6 +12,10 @@ const SignUp = () => {
   const navigator = () => {
     navigate("/account/login");
   };
+
+  // const render = () => {
+  //   navigate("/code")
+  // }
 
   return (
     <Fragment>
@@ -35,7 +39,7 @@ const SignUp = () => {
                   <input
                     type="Email"
                     placeholder="Restaurant Name"
-                    className="pl-10 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px]  focus:border-blue-500"
+                    className="pl-10 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px]  focus:ring-0 focus:border-gray-500"
                   />
                 </div>
               </div>
@@ -44,7 +48,7 @@ const SignUp = () => {
                   <input
                     type="Email"
                     placeholder="Email"
-                    className="pl-10 pr-4 py-2 rounded-lg bg-[#F5F5F7]  focus:outline-none md:w-[400px] w-[300px]  focus:border-blue-500"
+                    className="pl-10 pr-4 py-2 rounded-lg bg-[#F5F5F7]  focus:outline-none md:w-[400px] w-[300px] focus:ring-0 focus:border-gray-500"
                   />
                 </div>
               </div>
@@ -53,7 +57,7 @@ const SignUp = () => {
                   <input
                     type="password"
                     placeholder="Password"
-                    className="pl-10 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px]"
+                    className="pl-10 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:ring-0 focus:border-gray-500"
                   />
                 </div>
               </div>
@@ -62,17 +66,19 @@ const SignUp = () => {
                   <input
                     type="Email"
                     placeholder="Contact No."
-                    className="pl-10 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border-blue-500"
+                    className="pl-10 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:ring-0 focus:border-gray-500"
                   />
                 </div>
               </div>
             </div>
-            <div className=" flex justify-end  mb-5  cursor-pointer">
-              <button className="bg-[#FBC252] py-2 px-6 text-white rounded-md flex">
-                Next
-                <IoIosArrowForward className="mt-1 ml-3" />
-              </button>
-            </div>
+            <Link to="/code">
+              <div className=" flex justify-end  mb-5  cursor-pointer">
+                <button className="bg-[#FBC252] py-2 px-6 text-white rounded-md flex">
+                  Next
+                  <IoIosArrowForward className="mt-1 ml-3" />
+                </button>
+              </div>
+            </Link>
             <div className=" lg:hidden flex justify-center">
               <span className="text-center text-[#464255]">
                 Already have an account?

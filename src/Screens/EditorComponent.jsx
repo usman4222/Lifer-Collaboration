@@ -12,7 +12,7 @@ const EditorComponent = () => {
 
   return (
     <>
-      <div className="lg:w-[100%] lg:h-[10%] mx-auto mt-8 w-[95%]">
+      <div className="lg:w-[100%] mx-auto mt-8 w-[95%]">
         <Editor
           apiKey={API_KEY}
           init={{

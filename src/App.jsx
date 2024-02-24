@@ -21,6 +21,10 @@ import AddRevenue from "./Components/AddRevenue";
 import Notification from "./Screens/Notification";
 import NoPageFound from "./Screens/NoPageFound.jsx";
 import EditorComponent from "./Screens/EditorComponent.jsx";
+import OTP from "./Screens/OTP.jsx";
+import OTP1 from "./Screens/Otpcode.jsx";
+import Otpcode from "./Screens/Otpcode.jsx";
+import PackageScreen from "./Screens/PackageScreen.jsx";
 function App() {
   const [overlay, setOverlay] = useState(false);
   const [showChat, setShowChat] = useState(false);
@@ -76,7 +80,8 @@ function App() {
         <Route element={<HelpForm />} path="/help-form" />
         <Route element={<Menu />} path="/menu/*" />
         <Route element={<AddMenu />} path="/add-menu" />
-        {/* <Route element={<EditorComponent />} path="/edit" /> */}
+        {/* <Route element={<Otpcode />} path="/code" />
+        <Route element={<PackageScreen />} path="/cod" /> */}
       </Routes>
 
       {showChat && (

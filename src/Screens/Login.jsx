@@ -31,7 +31,7 @@ const Login = () => {
                   <input
                     type="email"
                     placeholder="E-mail"
-                    className="pl-10 pr-4 py-3 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px]"
+                    className="pl-10 pr-4 py-3 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:ring-0 focus:border-gray-500"
                   />
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none ">
                     <MdEmail className="text-gray-500" />
@@ -43,7 +43,7 @@ const Login = () => {
                   <input
                     type="password"
                     placeholder="Password"
-                    className="pl-10 pr-4 py-3 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px]"
+                    className="pl-10 pr-4 py-3 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:ring-0 focus:border-gray-500"
                   />
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <RiLockPasswordFill className="text-gray-500" />

@@ -54,7 +54,7 @@ const OTP = () => {
 
   return (
     <>
-      <div className="w-4/12 bg-white min-h-screen">
+      <div className="bg-white min-h-screen">
         <div className="flex flex-col py-24 px-10 gap-y-4">
           <div className="flex flex-row  justify-between items-start gap-x-8">
             <FaArrowLeft size={25} className="text-textActive" />
@@ -63,7 +63,7 @@ const OTP = () => {
               arsalan@gmail.com
             </p>
           </div>
-          <div className="flex flex-row px-10 gap-x-4">
+          <div className="flex justify-center py-5 flex-row px-10 gap-x-4">
             {otp.map((digit, index) => (
               <input
                 key={index}
