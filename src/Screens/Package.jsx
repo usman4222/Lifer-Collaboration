@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import vector from "../assets/vector.png"
+import vector from "../assets/Vector.png";
 import { IoCheckmarkOutline } from "react-icons/io5";
 
 const Package = () => {
@@ -62,7 +62,9 @@ const Package = () => {
                   <IoCheckmarkOutline />
                 </div>
                 <div>
-                  <p className="text-sm">Figma ipsum component variant main layer.</p>
+                  <p className="text-sm">
+                    Figma ipsum component variant main layer.
+                  </p>
                 </div>
               </div>
               <div className="flex justify-center pl-3 pt-1">
@@ -78,7 +80,9 @@ const Package = () => {
                   <IoCheckmarkOutline />
                 </div>
                 <div>
-                  <p className="text-sm">Object comment clip figma group vector.</p>
+                  <p className="text-sm">
+                    Object comment clip figma group vector.
+                  </p>
                 </div>
               </div>
               <div className="flex justify-center pl-3 pt-1">
@@ -86,7 +90,9 @@ const Package = () => {
                   <IoCheckmarkOutline />
                 </div>
                 <div>
-                  <p className="text-sm">Overflow fill editor export inspect select.</p>
+                  <p className="text-sm">
+                    Overflow fill editor export inspect select.
+                  </p>
                 </div>
               </div>
             </div>
