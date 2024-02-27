@@ -1,22 +1,23 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useRef, useEffect } from "react";
 import logo from "../assets/logo.png";
 import profil from "../assets/profil.png";
-import { MdEmail } from "react-icons/md";
-import { RiLockPasswordFill } from "react-icons/ri";
-import { Link, useNavigate } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import signup from "../Services/Authentication.js";
 import { CiCamera } from "react-icons/ci";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+
 const SignUp = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
   const navigate = useNavigate();
+  const inputRef = useRef();
   const [profileImage, setProfileImage] = useState(null);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    password: "",
-    confirmPassword: "",
-  });
 
   const navigator = () => {
     navigate("/account/login");
@@ -35,26 +36,6 @@ const SignUp = () => {
     }
   };
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await signup(formData);
-      // Redirect or show success message
-    } catch (error) {
-      console.error("Signup failed:", error.message);
-      // Display error message to the user
-    }
-  };
-
-  console.log(buttonDisabled);
-
   return (
     <Fragment>
       <div className="lg:grid lg:grid-cols-12 ">
@@ -64,11 +45,11 @@ const SignUp = () => {
               <h3 className="text-[#464255] text-3xl md:text-4xl font-bold  py-2 ">
                 Sign Up
               </h3>
-              <p className="text-[#464255] text-sm pb-8">
-                Please fill your information bellow
+              <p className="text-[#464255] text-sm pb-4">
+                Please fill your information below
               </p>
             </div>
-            <div className="flex justify-center pb-4">
+            <div className="flex justify-center pb-3">
               <label htmlFor="profile">
                 <input
                   type="file"
@@ -88,63 +69,88 @@ const SignUp = () => {
                 </div>
               </label>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form>
               <div>
-                <div className="mt-3 mb-8 flex justify-center">
+                <div className="mt-3 mb-4 flex justify-center">
                   <div className="relative">
                     <input
                       type="text"
-                      placeholder="Restaurant Name"
-                      name="name"
-                      className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px]  focus:ring-0 focus:border-gray-500"
-                      onChange={(e) => handleChange(e)}
-                      required
+                      placeholder="First Name"
+                      name="firstname"
+                      className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
+                      ref={inputRef}
+                      {...register("firstname")}
                     />
                   </div>
                 </div>
-                <div className="mt-3 mb-8 flex justify-center">
+                <div className="mt-3 mb-4 flex justify-center">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Last Name"
+                      name="lastname"
+                      className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
+                      {...register("lastname")}
+                    />
+                  </div>
+                </div>
+                <div className="mt-3 mb-4 flex justify-center">
                   <div className="relative">
                     <input
                       type="Email"
                       name="email"
                       placeholder="Email"
-                      className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7]  focus:outline-none md:w-[400px] w-[300px] focus:ring-0 focus:border-gray-500"
-                      onChange={(e) => handleChange(e)}
-                      required
+                      className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7]  focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
+                      {...register("email")}
                     />
                   </div>
                 </div>
-                <div className="mt-3 mb-8 flex justify-center">
+                <div className="mt-3 mb-4 flex justify-center">
                   <div className="relative">
                     <input
                       type="tel"
                       name="phone"
                       placeholder="Contact No."
-                      className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:ring-0 focus:border-gray-500"
-                      onChange={(e) => handleChange(e)}
+                      className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
+                      {...register("phone")}
                     />
                   </div>
                 </div>
-                <div className="mt-3 mb-8 flex justify-center">
+                <div className="mt-3 mb-4 flex justify-center">
                   <div>
                     <input
                       type="password"
                       placeholder="Password"
                       name="password"
-                      className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:ring-0 focus:border-gray-500"
-                      onChange={(e) => handleChange(e)}
+                      className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:border focus:border-textActive focus:ring-0"
+                      {...register("password")}
                     />
                   </div>
                 </div>
-                <div className="mt-3 mb-8 flex justify-center">
+                <div className="mt-3 mb-4 flex justify-center">
                   <div>
                     <input
                       type="password"
                       placeholder="Confirm Password"
                       name="confirmPassword"
-                      className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:ring-0 focus:border-gray-500"
-                      onChange={(e) => handleChange(e)}
+                      className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:border focus:border-textActive focus:ring-0"
+                      {...register("confirmpassword")}
                     />
+                  </div>
+                </div>
+                <div className="mt-3 mb-4 flex justify-start">
+                  <div className="flex flex-col gap-y-2">
+                    <select
+                      name="role_id"
+                      id="role_id"
+                      className="rounded-md bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] text-gray-600 focus:border focus:border-textActive focus:ring-0"
+                      {...register("role_id")}
+                    >
+                      <option value="">Select Role</option>
+                      <option value="1">Admin</option>
+                      <option value="2">Moderator</option>
+                      <option value="3">User</option>
+                    </select>
                   </div>
                 </div>
               </div>

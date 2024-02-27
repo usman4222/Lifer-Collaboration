@@ -15,14 +15,16 @@ const Login = () => {
     <Fragment>
       <div className="lg:grid lg:grid-cols-12 ">
         <div className="lg:col-span-5  flex justify-center">
-          <div className="md:w-[400px]  w-[300px]">
+          <div className="md:w-[400px]  w-[300px] ">
             <div className="flex justify-center py-8">
               <img className="object-contain w-50" src={logo} />
             </div>
             <div>
-              <h3 className="text-[#464255] text-lg font-bold py-2 ">Login</h3>
+              <h3 className="text-[#464255] text-3xl md:text-4xl font-bold py-2 ">
+                Login
+              </h3>
               <p className="text-[#464255] text-sm pb-8">
-                Please fill your information bellow
+                Please fill your information below
               </p>
             </div>
             <div>
@@ -31,7 +33,7 @@ const Login = () => {
                   <input
                     type="email"
                     placeholder="E-mail"
-                    className="pl-10 pr-4 py-3 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:ring-0 focus:border-gray-500"
+                    className="pl-10 pr-4 py-3 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:ring-0 focus:border-textActive"
                   />
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none ">
                     <MdEmail className="text-gray-500" />
@@ -43,7 +45,7 @@ const Login = () => {
                   <input
                     type="password"
                     placeholder="Password"
-                    className="pl-10 pr-4 py-3 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:ring-0 focus:border-gray-500"
+                    className="pl-10 pr-4 py-3 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:ring-0 focus:border-textActive"
                   />
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <RiLockPasswordFill className="text-gray-500" />
@@ -57,9 +59,9 @@ const Login = () => {
               </button>
             </div>
             <div className="mb-10">
-              <h6 className="text-center text-sm text-[#464255] cursor-pointer">
+              <span className="text-center text-sm text-[#464255] cursor-pointer">
                 Forgot Your Password?
-              </h6>
+              </span>
             </div>
             <div
               className="flex justify-center mb-8  cursor-pointer lg:hidden"

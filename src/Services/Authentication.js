@@ -1,8 +1,8 @@
 import axios from "axios"
 
-const signup = async ({ name, email, phone, password, confirmPassword }) => {
+const signup = async ({ name, email, phone, password, confirmPassword, role_id }) => {
     try {
-        if (name === "" || email === "" || password === "" || confirmPassword === "" || phone === "") {
+        if (name === "" || email === "" || password === "" || confirmPassword === "" || phone === "" || userrole === "") {
             throw new Error("Please enter all fields");
         }
 
@@ -10,7 +10,7 @@ const signup = async ({ name, email, phone, password, confirmPassword }) => {
             throw new Error("Passwords do not match");
         }
 
-        const response = await axios.post("https://reqres.in/api/register", {
+        const response = await axios.post("httpzs://reqres.in/api/register", {
             name,
             email,
             phone,
