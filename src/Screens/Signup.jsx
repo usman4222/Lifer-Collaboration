@@ -1,13 +1,14 @@
 import React, { Fragment, useState, useRef, useEffect } from "react";
 import logo from "../assets/logo.png";
-import profil from "../assets/profil.png";
 import { IoIosArrowForward } from "react-icons/io";
 import signup from "../Services/Authentication.js";
-import { CiCamera } from "react-icons/ci";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignUp = () => {
+  const [serverErrors, setServerErrors] = useState([]);
+
   const {
     register,
     handleSubmit,
@@ -17,29 +18,21 @@ const SignUp = () => {
 
   const navigate = useNavigate();
   const inputRef = useRef();
-  const [profileImage, setProfileImage] = useState(null);
 
   const navigator = () => {
     navigate("/account/login");
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        setProfileImage(reader.result);
-      };
-
-      reader.readAsDataURL(file);
-    }
+  const formSubmit = async (data) => {
+    const response = await signup(data);
+    toast.success(response);
   };
 
   return (
     <Fragment>
       <div className="lg:grid lg:grid-cols-12 ">
-        <div className="lg:col-span-5  flex justify-center">
+        <Toaster />
+        <div className="lg:col-span-5  flex justify-center overflow-y-auto">
           <div className="md:w-[400px]  w-[300px mt-3">
             <div>
               <h3 className="text-[#464255] text-3xl md:text-4xl font-bold  py-2 ">
@@ -49,93 +42,159 @@ const SignUp = () => {
                 Please fill your information below
               </p>
             </div>
-            <div className="flex justify-center pb-3">
-              <label htmlFor="profile">
-                <input
-                  type="file"
-                  name="profile"
-                  id="profile"
-                  className="hidden"
-                  onChange={handleImageChange}
-                />
-                <div className="w-20 h-20 object-contain rounded-full flex justify-center items-center cursor-pointer border relative">
-                  <img
-                    src={profileImage ? profileImage : profil}
-                    className="object-contain w-20 h-20 rounded-full"
-                  />
-                  <div className="absolute bottom-0 right-0 p-1 bg-textActive rounded-full text-white">
-                    <CiCamera />
-                  </div>
-                </div>
-              </label>
-            </div>
-            <form>
+            <form onSubmit={handleSubmit(formSubmit)}>
               <div>
-                <div className="mt-3 mb-4 flex justify-center">
-                  <div className="relative">
+                <div className="mt-3 mb-4 flex justify-start">
+                  <div className="relative flex flex-col ">
                     <input
                       type="text"
                       placeholder="First Name"
                       name="firstname"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
                       ref={inputRef}
-                      {...register("firstname")}
+                      {...register("firstname", {
+                        required: "First name is required",
+                        minLength: {
+                          value: 2,
+                          message: "First name must be atlease 2 characters",
+                        },
+                        maxLength: {
+                          value: 30,
+                          message: "First name must be less than 30 characters",
+                        },
+                      })}
+                      aria-invalid={errors.fistname ? "true" : "false"}
                     />
+                    <span className="text-red-500 text-sm ml-2">
+                      {errors.firstname && errors.firstname.message}
+                    </span>
                   </div>
                 </div>
-                <div className="mt-3 mb-4 flex justify-center">
-                  <div className="relative">
+                <div className="mt-3 mb-4 flex justify-start">
+                  <div className="relative flex flex-col">
                     <input
                       type="text"
                       placeholder="Last Name"
                       name="lastname"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("lastname")}
+                      {...register("lastname", {
+                        required: false,
+                        minLength: {
+                          value: 2,
+                          message: "Last name must be atlease 2 characters",
+                        },
+                        maxLength: {
+                          value: 30,
+                          message: "Last name must be less than 30 characters",
+                        },
+                      })}
+                      aria-invalid={errors.lastname ? "true" : "false"}
                     />
+                    <span className="text-red-500 text-sm ml-2">
+                      {errors.lastname && errors.lastname.message}
+                    </span>
                   </div>
                 </div>
-                <div className="mt-3 mb-4 flex justify-center">
-                  <div className="relative">
+                <div className="mt-3 mb-4 flex justify-start">
+                  <div className="relative flex flex-col">
                     <input
                       type="Email"
                       name="email"
                       placeholder="Email"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7]  focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("email")}
+                      {...register("email", {
+                        required: false,
+                        matches: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      })}
+                      aria-invalid={errors.email ? "true" : "false"}
                     />
+                    <span className="text-red-500 text-sm ml-2">
+                      {errors.email && errors.email.message}
+                    </span>
                   </div>
                 </div>
-                <div className="mt-3 mb-4 flex justify-center">
-                  <div className="relative">
+                <div className="mt-3 mb-4 flex justify-start">
+                  <div className="relative flex flex-col">
                     <input
-                      type="tel"
+                      type="number"
                       name="phone"
                       placeholder="Contact No."
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("phone")}
+                      {...register("phone", {
+                        required: "Contact Number is required",
+                        pattern: /^[0-9\b]+$/,
+                        minLength: {
+                          value: 10,
+                          message: "Contact Number must be valid!",
+                        },
+                        maxLength: {
+                          value: 20,
+                          message: "Contact Number must be valid!",
+                        },
+                      })}
+                      aria-invalid={errors.phone ? "true" : "false"}
                     />
+                    <span className="text-red-500 text-sm ml-2">
+                      {errors.phone && errors.phone.message}
+                    </span>
                   </div>
                 </div>
-                <div className="mt-3 mb-4 flex justify-center">
-                  <div>
+                <div className="mt-3 mb-4 flex justify-start">
+                  <div className="flex flex-col">
                     <input
                       type="password"
                       placeholder="Password"
                       name="password"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("password")}
+                      {...register("password", {
+                        minLength: {
+                          value: 9,
+                          message: "Password must be at least 9 characters",
+                        },
+                        maxLength: {
+                          value: 100,
+                          message: "Password must be less than 100 characters",
+                        },
+                        required: "Password is required",
+                      })}
+                      aria-invalid={errors.password ? "true" : "false"}
                     />
+                    <span className="text-red-500 text-sm ml-2">
+                      {errors.password && errors.password.message}
+                    </span>
                   </div>
                 </div>
-                <div className="mt-3 mb-4 flex justify-center">
-                  <div>
+                <div className="mt-3 mb-4 flex justify-start">
+                  <div className="flex flex-col">
                     <input
                       type="password"
                       placeholder="Confirm Password"
                       name="confirmPassword"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("confirmpassword")}
+                      {...register("confirmpassword", {
+                        required:
+                          "Confirm Password does not match with Password",
+                        minLength: {
+                          value: 9,
+                          message:
+                            "Confirm Password does not match with Password",
+                        },
+                        maxLength: {
+                          value: 100,
+                          message:
+                            "Confirm Password does not match with Password",
+                        },
+                        validate: (val) => {
+                          if (watch("password") !== val) {
+                            return "Confirm Password does not match with Password";
+                          }
+                        },
+                      })}
+                      aria-invalid={errors.confirmpassword ? "true" : "false"}
                     />
+                    <span className="text-red-500 text-sm ml-2">
+                      {errors.confirmpassword && errors.confirmpassword.message}
+                    </span>
                   </div>
                 </div>
                 <div className="mt-3 mb-4 flex justify-start">
@@ -144,13 +203,21 @@ const SignUp = () => {
                       name="role_id"
                       id="role_id"
                       className="rounded-md bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] text-gray-600 focus:border focus:border-textActive focus:ring-0"
-                      {...register("role_id")}
+                      {...register("role_id", {
+                        required: "Select Role",
+                        valueAsNumber: true,
+                      })}
+                      aria-invalid={errors.role_id ? "true" : "false"}
                     >
                       <option value="">Select Role</option>
                       <option value="1">Admin</option>
                       <option value="2">Moderator</option>
                       <option value="3">User</option>
                     </select>
+                    <span className="text-red-500 text-sm ml-2">
+                      {serverErrors?.role_id ||
+                        (errors.role_id && errors.role_id.message)}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -179,7 +246,7 @@ const SignUp = () => {
             </div>
           </div>
         </div>
-        <div className="lg:col-span-7 relative hidden lg:block">
+        <div className="lg:col-span-7 w-[60%]  hidden lg:block fixed top-0 right-0">
           <div className="bg-[url('/src/assets/bg.jpeg')] bg-cover h-[100vh] ">
             <div className="absolute inset-0 bg-black opacity-60"></div>
             <div className="flex justify-center items-center h-[100vh] text-white">
