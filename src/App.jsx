@@ -20,11 +20,12 @@ import AddMenu from "./Screens/AddMenu";
 import AddRevenue from "./Components/AddRevenue";
 import Notification from "./Screens/Notification";
 import NoPageFound from "./Screens/NoPageFound.jsx";
-import EditorComponent from "./Screens/EditorComponent.jsx";
-import OTP from "./Screens/OTP.jsx";
-import OTP1 from "./Screens/Otpcode.jsx";
-import Otpcode from "./Screens/Otpcode.jsx";
-import PackageScreen from "./Screens/PackageScreen.jsx";
+import Login from "./Screens/Login.jsx";
+import Signup from "./Screens/Signup.jsx";
+import { AuthProvider } from "./Context/AuthContext.jsx";
+import ProtectedRoute from "./Components/ProtectedRoute";
+import { Toaster } from "react-hot-toast";
+
 function App() {
   const [overlay, setOverlay] = useState(false);
   const [showChat, setShowChat] = useState(false);
@@ -59,31 +60,49 @@ function App() {
 
   return (
     <>
-      <SideBar />
-      <Navbar toggleChat={toggleChat} toggleNotification={toggleNotification} />
-      <Routes>
-        <Route element={<Home />} path="/" />
-        <Route element={<OrderHistory />} path="/order-history" />
-        <Route element={<Orders />} path="/orders" />
-        <Route
-          element={<Help toggleRepresentator={toggleRepresentator} />}
-          path="/help"
-        />
-        <Route
-          element={<Revenue toggleRevenueForm={toggleRevenueForm} />}
-          path="/revenue"
-        />
-        <Route
-          element={<Rider toggleRiderForm={toggleRiderForm} />}
-          path="/riders"
-        />
-        <Route element={<HelpForm />} path="/help-form" />
-        <Route element={<Menu />} path="/menu/*" />
-        <Route element={<AddMenu />} path="/add-menu" />
-        {/* <Route element={<Otpcode />} path="/code" />
-        <Route element={<PackageScreen />} path="/cod" /> */}
-      </Routes>
-
+      <Toaster />
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route
+              element={
+                <ProtectedRoute
+                  toggleNotification={toggleNotification}
+                  toggleChat={toggleChat}
+                />
+              }
+            >
+              <Route key="home" element={<Home />} path="/" />,
+              <Route
+                key="order-history"
+                element={<OrderHistory />}
+                path="/order-history"
+              />
+              <Route key="orders" element={<Orders />} path="/orders" />,
+              <Route
+                key="help"
+                element={<Help toggleRepresentator={toggleRepresentator} />}
+                path="/help"
+              />
+              <Route
+                key="revenue"
+                element={<Revenue toggleRevenueForm={toggleRevenueForm} />}
+                path="/revenue"
+              />
+              <Route
+                key="riders"
+                element={<Rider toggleRiderForm={toggleRiderForm} />}
+                path="/riders"
+              />
+              <Route key="help-form" element={<HelpForm />} path="/help-form" />
+              <Route key="menu" element={<Menu />} path="/menu/*" />,
+              <Route key="add-menu" element={<AddMenu />} path="/add-menu" />,
+            </Route>
+            <Route key="login" element={<Login />} path="/account/login" />,
+            <Route key="signup" element={<Signup />} path="/account/signup" />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
       {showChat && (
         <>
           {createPortal(<Chat />, document.getElementById("modal"))}

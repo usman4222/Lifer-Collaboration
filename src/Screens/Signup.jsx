@@ -1,14 +1,12 @@
 import React, { Fragment, useState, useRef, useEffect } from "react";
 import logo from "../assets/logo.png";
 import { IoIosArrowForward } from "react-icons/io";
-import signup from "../Services/Authentication.js";
+import { signup } from "../Services/Authentication.js";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
-  const [serverErrors, setServerErrors] = useState([]);
-
   const {
     register,
     handleSubmit,
@@ -24,16 +22,21 @@ const SignUp = () => {
   };
 
   const formSubmit = async (data) => {
-    const response = await signup(data);
-    toast.success(response);
+    try {
+      const response = await signup(data);
+      toast.success(response.message, { duration: 5000 });
+    } catch (error) {
+      toast.error(error.message || "An error occurred during signup.", {
+        duration: 5000,
+      });
+    }
   };
 
   return (
     <Fragment>
       <div className="lg:grid lg:grid-cols-12 ">
-        <Toaster />
         <div className="lg:col-span-5  flex justify-center overflow-y-auto">
-          <div className="md:w-[400px]  w-[300px mt-3">
+          <div className="md:w-[400px]  w-[300px] mt-3">
             <div>
               <h3 className="text-[#464255] text-3xl md:text-4xl font-bold  py-2 ">
                 Sign Up
@@ -78,7 +81,7 @@ const SignUp = () => {
                       name="lastname"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
                       {...register("lastname", {
-                        required: false,
+                        required: "Last name is required",
                         minLength: {
                           value: 2,
                           message: "Last name must be atlease 2 characters",
@@ -103,8 +106,11 @@ const SignUp = () => {
                       placeholder="Email"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7]  focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
                       {...register("email", {
-                        required: false,
-                        matches: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        required: "Email is required",
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                          message: "Invalid email address",
+                        },
                       })}
                       aria-invalid={errors.email ? "true" : "false"}
                     />
@@ -215,8 +221,7 @@ const SignUp = () => {
                       <option value="3">User</option>
                     </select>
                     <span className="text-red-500 text-sm ml-2">
-                      {serverErrors?.role_id ||
-                        (errors.role_id && errors.role_id.message)}
+                      {errors.role_id && errors.role_id.message}
                     </span>
                   </div>
                 </div>
@@ -246,7 +251,7 @@ const SignUp = () => {
             </div>
           </div>
         </div>
-        <div className="lg:col-span-7 w-[60%]  hidden lg:block fixed top-0 right-0">
+        <div className="lg:col-span-7 w-[59%]  hidden lg:block fixed top-0 right-0">
           <div className="bg-[url('/src/assets/bg.jpeg')] bg-cover h-[100vh] ">
             <div className="absolute inset-0 bg-black opacity-60"></div>
             <div className="flex justify-center items-center h-[100vh] text-white">

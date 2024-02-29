@@ -1,12 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { IoIosSend } from "react-icons/io";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { IoMdCloseCircle } from "react-icons/io";
 import { MdErrorOutline } from "react-icons/md";
 
 const NotificationHolder = ({ toggleSideBar, openSideBar }) => {
-  const navigate = useNavigate();
   return (
     <div className="flex flex-col overflow-y-auto ">
       <div className="flex  flex-row justify-between items-center px-10 py-4 gap-x-4 border-b border-gray-300">
