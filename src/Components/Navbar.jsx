@@ -2,22 +2,24 @@ import React, { useState } from "react";
 import { GoBell } from "react-icons/go";
 import { BiSolidMessageSquareDots } from "react-icons/bi";
 import { HiMiniBars3BottomLeft } from "react-icons/hi2";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
-import { logout } from "../Services/Authentication";
 import toast from "react-hot-toast";
 
 const Navbar = ({ toggleChat, toggleNotification }) => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+  const navigate = useNavigate();
 
   const { loggedIn, handleUser, handleAccessToken, toggleLoggedIn } = useAuth();
 
   const handleLogout = () => {
     toast("You have been logged out");
-    logout();
+    localStorage.removeItem("user");
+    localStorage.removeItem("access_token");
     handleUser(null);
     handleAccessToken(null);
-    toggleLoggedIn(false);
+    toggleLoggedIn();
+    navigate("/account/login");
   };
 
   const handleSidebarToggle = () => {

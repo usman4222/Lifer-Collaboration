@@ -32,6 +32,7 @@ const Login = () => {
         handleUser(user);
         handleAccessToken(response.data.token);
         toast.success(response.message, { duration: 5000 });
+        navigate("/");
       }
     } catch (error) {
       toast.error(error.message || "An error occured during Login", {
