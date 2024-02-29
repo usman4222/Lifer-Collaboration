@@ -1,63 +1,135 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import logo from "../assets/logo.png";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { login } from "../Services/Authentication";
+import toast from "react-hot-toast";
+import { useAuth } from "../Context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { handleUser, loggedIn, handleAccessToken } = useAuth();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const formSubmit = async (data) => {
+    try {
+      const response = await login(data);
+      if (response) {
+        const user = {
+          id: response.data.id,
+          first_name: response.data?.first_name,
+          last_name: response.data?.last_name,
+          email: response.data?.email,
+          contact_no: response.data?.contact_no,
+        };
+        handleUser(user);
+        handleAccessToken(response.data.token);
+        toast.success(response.message, { duration: 5000 });
+      }
+    } catch (error) {
+      toast.error(error.message || "An error occured during Login", {
+        duration: 5000,
+      });
+    }
+  };
 
   const navigator = () => {
     navigate("/account/signup");
   };
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <Fragment>
       <div className="lg:grid lg:grid-cols-12 ">
         <div className="lg:col-span-5  flex justify-center">
           <div className="md:w-[400px]  w-[300px] ">
-            <div className="flex justify-center py-8">
-              <img className="object-contain w-50" src={logo} />
-            </div>
-            <div>
-              <h3 className="text-[#464255] text-3xl md:text-4xl font-bold py-2 ">
-                Login
-              </h3>
-              <p className="text-[#464255] text-sm pb-8">
-                Please fill your information below
-              </p>
-            </div>
-            <div>
-              <div className="flex justify-center">
-                <div className="relative">
-                  <input
-                    type="email"
-                    placeholder="E-mail"
-                    className="pl-10 pr-4 py-3 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:ring-0 focus:border-textActive"
-                  />
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none ">
-                    <MdEmail className="text-gray-500" />
+            <form onSubmit={handleSubmit(formSubmit)}>
+              <div className="flex justify-center py-8">
+                <img className="object-contain w-50" src={logo} />
+              </div>
+              <div>
+                <h3 className="text-[#464255] text-3xl md:text-4xl font-bold py-2 ">
+                  Login
+                </h3>
+                <p className="text-[#464255] text-sm pb-8">
+                  Please fill your information below
+                </p>
+              </div>
+              <div>
+                <div className="flex justify-start flex-col">
+                  <div className="relative">
+                    <input
+                      type="email"
+                      placeholder="E-mail"
+                      className="pl-10 pr-4 py-3 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:ring-0 focus:border-textActive"
+                      {...register("email", {
+                        required: "Email is required",
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                          message: "Invalid email address",
+                        },
+                      })}
+                    />
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none ">
+                      <MdEmail className="text-gray-500" />
+                    </div>
                   </div>
+                  {errors.email && (
+                    <span className="text-red-500 text-sm ml-3">
+                      {errors.email.message}
+                    </span>
+                  )}
+                </div>
+                <div className="mt-5 mb-8 flex justify-start flex-col">
+                  <div className="relative">
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      className="pl-10 pr-4 py-3 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:ring-0 focus:border-textActive"
+                      {...register("password", {
+                        required: "Password is required",
+                        minLength: {
+                          value: 9,
+                          message: "Password must be atleast 9 characters long",
+                        },
+                        maxLength: {
+                          value: 100,
+                          message: "Password can only be 100 characters long",
+                        },
+                      })}
+                    />
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <RiLockPasswordFill className="text-gray-500" />
+                    </div>
+                  </div>
+                  {errors.password && (
+                    <span className="text-red-500 text-sm ml-3">
+                      {errors.password.message}
+                    </span>
+                  )}
                 </div>
               </div>
-              <div className="mt-5 mb-8 flex justify-center">
-                <div className="relative">
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    className="pl-10 pr-4 py-3 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:ring-0 focus:border-textActive"
-                  />
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <RiLockPasswordFill className="text-gray-500" />
-                  </div>
-                </div>
+              <div className=" flex justify-center  mb-8  cursor-pointer">
+                <button
+                  type="submit"
+                  className="bg-[#FBC252] py-3 w-[200px] lg:w-[400px] text-white rounded-md"
+                >
+                  Login
+                </button>
               </div>
-            </div>
-            <div className=" flex justify-center  mb-8  cursor-pointer">
-              <button className="bg-[#FBC252] py-3 w-[200px] lg:w-[400px] text-white rounded-md">
-                Login
-              </button>
-            </div>
+            </form>
             <div className="mb-10">
               <span className="text-center text-sm text-[#464255] cursor-pointer">
                 Forgot Your Password?
