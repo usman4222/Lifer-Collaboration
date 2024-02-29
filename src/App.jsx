@@ -1,9 +1,7 @@
 import "./App.css";
 import { useState } from "react";
-import SideBar from "./Components/SideBar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Screens/Home";
-import Navbar from "./Components/Navbar";
 import OrderHistory from "./Screens/OrderHistory";
 import Orders from "./Screens/Orders";
 import Help from "./Screens/Help";
@@ -19,7 +17,6 @@ import Menu from "./Screens/Menu";
 import AddMenu from "./Screens/AddMenu";
 import AddRevenue from "./Components/AddRevenue";
 import Notification from "./Screens/Notification";
-import NoPageFound from "./Screens/NoPageFound.jsx";
 import Login from "./Screens/Login.jsx";
 import Signup from "./Screens/Signup.jsx";
 import { AuthProvider } from "./Context/AuthContext.jsx";

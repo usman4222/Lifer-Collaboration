@@ -12,42 +12,33 @@ export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(null);
 
   useEffect(() => {
-    const stored_user = localStorage.getItem("user");
-    const stored_token = localStorage.getItem("access_token");
-    if (stored_user) {
-      setUser(stored_user);
+    const storedUser = localStorage.getItem("user");
+    const storedToken = localStorage.getItem("access_token");
+
+    if (storedUser != null && storedToken != null) {
+      setUser(JSON.parse(storedUser));
+      setAccessToken(JSON.parse(storedToken));
       setLoggedIn(true);
-      setAccessToken(stored_token);
+    } else {
+      setUser(null);
+      setAccessToken(null);
+      setLoggedIn(false);
     }
   }, []);
-
-  const handleAccessToken = (data) => {
-    setAccessToken(data);
-  };
-
-  const handleUser = (data) => {
-    setUser(data);
-    localStorage.setItem("user", JSON.stringify(data));
-    setLoggedIn(true);
-  };
 
   const toggleLoggedIn = () => {
     setLoggedIn(!loggedIn);
   };
 
   return (
-    <>
-      <AuthContext.Provider
-        value={{
-          user,
-          handleUser,
-          loggedIn,
-          handleAccessToken,
-          toggleLoggedIn,
-        }}
-      >
-        {children}
-      </AuthContext.Provider>
-    </>
+    <AuthContext.Provider
+      value={{
+        user,
+        loggedIn,
+        toggleLoggedIn,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
 };

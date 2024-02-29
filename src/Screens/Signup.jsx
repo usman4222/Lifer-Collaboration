@@ -1,19 +1,18 @@
 import React, { Fragment, useState, useRef, useEffect } from "react";
 import logo from "../assets/logo.png";
 import { IoIosArrowForward } from "react-icons/io";
-import signup from "../Services/Authentication.js";
-import { CiCamera } from "react-icons/ci";
+import { signup } from "../Services/Authentication.js";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const SignUp = () => {
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   watch,
-  //   formState: { errors },
-  // } = useForm();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
   const navigate = useNavigate();
   const inputRef = useRef();
@@ -58,6 +57,11 @@ const SignUp = () => {
                       ref={inputRef}
                       {...register("firstname")}
                     />
+                    {errors.firstname && (
+                      <span className="text-red-500 text-sm ml-3">
+                        {errors.firstname.message}
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="mt-3 mb-4 flex justify-start">
@@ -69,6 +73,11 @@ const SignUp = () => {
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
                       {...register("lastname")}
                     />
+                    {errors.lastname && (
+                      <span className="text-red-500 text-sm ml-3">
+                        {errors.lastname.message}
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="mt-3 mb-4 flex justify-start">
@@ -80,6 +89,11 @@ const SignUp = () => {
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7]  focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
                       {...register("email")}
                     />
+                    {errors.email && (
+                      <span className="text-red-500 text-sm ml-3">
+                        {errors.email.message}
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="mt-3 mb-4 flex justify-start">
@@ -91,6 +105,11 @@ const SignUp = () => {
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
                       {...register("phone")}
                     />
+                    {errors.phone && (
+                      <span className="text-red-500 text-sm ml-3">
+                        {errors.phone.message}
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="mt-3 mb-4 flex justify-start">
@@ -102,6 +121,11 @@ const SignUp = () => {
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:border focus:border-textActive focus:ring-0"
                       {...register("password")}
                     />
+                    {errors.password && (
+                      <span className="text-red-500 text-sm ml-3">
+                        {errors.password.message}
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="mt-3 mb-4 flex justify-start">
@@ -113,9 +137,11 @@ const SignUp = () => {
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:border focus:border-textActive focus:ring-0"
                       {...register("confirmpassword")}
                     />
-                    <span className="text-red-500 text-sm ml-2">
-                      {errors.confirmpassword && errors.confirmpassword.message}
-                    </span>
+                    {errors.confirmpassword && (
+                      <span className="text-red-500 text-sm ml-3">
+                        {errors.confirmpassword.message}
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="mt-3 mb-4 flex justify-start">
@@ -131,9 +157,11 @@ const SignUp = () => {
                       <option value="2">Moderator</option>
                       <option value="3">User</option>
                     </select>
-                    <span className="text-red-500 text-sm ml-2">
-                      {errors.role_id && errors.role_id.message}
-                    </span>
+                    {errors.role_id && (
+                      <span className="text-red-500 text-sm ml-3">
+                        {errors.role_id.message}
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>

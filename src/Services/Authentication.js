@@ -35,13 +35,3 @@ export const login = async (data) => {
         throw error.response.data;
     }
 }
-
-
-export const logout = async () => {
-    try {
-        localStorage.removeItem('user')
-        localStorage.removeItem('access_token')
-    } catch (error) {
-        console.log(error)
-    }
-}
