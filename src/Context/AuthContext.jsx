@@ -7,52 +7,38 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [accessToken, setAccessToken] = useState();
+  const [accessToken, setAccessToken] = useState(null);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("access_token");
 
-    if (storedUser && storedToken) {
+    if (storedUser != null && storedToken != null) {
       setUser(JSON.parse(storedUser));
-      setAccessToken(storedToken);
+      setAccessToken(JSON.parse(storedToken));
       setLoggedIn(true);
     } else {
-      setUser(null); // Reset user state if no stored user found
-      setLoggedIn(false); // Reset loggedIn state if no stored user found
+      setUser(null);
+      setAccessToken(null);
+      setLoggedIn(false);
     }
   }, []);
-
-  const handleAccessToken = (data) => {
-    setAccessToken(data);
-    localStorage.setItem("access_token", JSON.stringify(data));
-  };
-
-  const handleUser = (data) => {
-    setUser(data);
-    localStorage.setItem("user", JSON.stringify(data));
-    setLoggedIn(true);
-  };
 
   const toggleLoggedIn = () => {
     setLoggedIn(!loggedIn);
   };
 
   return (
-    <>
-      <AuthContext.Provider
-        value={{
-          user,
-          handleUser,
-          loggedIn,
-          handleAccessToken,
-          toggleLoggedIn,
-        }}
-      >
-        {children}
-      </AuthContext.Provider>
-    </>
+    <AuthContext.Provider
+      value={{
+        user,
+        loggedIn,
+        toggleLoggedIn,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
 };

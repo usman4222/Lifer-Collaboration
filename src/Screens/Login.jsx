@@ -10,7 +10,7 @@ import { useAuth } from "../Context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { handleUser, loggedIn, handleAccessToken } = useAuth();
+  const { loggedIn, toggleLoggedIn } = useAuth();
 
   const {
     register,
@@ -29,9 +29,13 @@ const Login = () => {
           email: response.data?.email,
           contact_no: response.data?.contact_no,
         };
-        handleUser(user);
-        handleAccessToken(response.data.token);
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem(
+          "access_token",
+          JSON.stringify(response.data.token)
+        );
         toast.success(response.message, { duration: 5000 });
+        toggleLoggedIn();
         navigate("/");
       }
     } catch (error) {

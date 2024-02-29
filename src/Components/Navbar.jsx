@@ -10,14 +10,12 @@ const Navbar = ({ toggleChat, toggleNotification }) => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const navigate = useNavigate();
 
-  const { loggedIn, handleUser, handleAccessToken, toggleLoggedIn } = useAuth();
+  const { loggedIn, toggleLoggedIn } = useAuth();
 
   const handleLogout = () => {
     toast("You have been logged out");
     localStorage.removeItem("user");
     localStorage.removeItem("access_token");
-    handleUser(null);
-    handleAccessToken(null);
     toggleLoggedIn();
     navigate("/account/login");
   };
