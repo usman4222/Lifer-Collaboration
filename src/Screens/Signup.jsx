@@ -1,18 +1,19 @@
 import React, { Fragment, useState, useRef, useEffect } from "react";
 import logo from "../assets/logo.png";
 import { IoIosArrowForward } from "react-icons/io";
-import { signup } from "../Services/Authentication.js";
+import signup from "../Services/Authentication.js";
+import { CiCamera } from "react-icons/ci";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const SignUp = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   watch,
+  //   formState: { errors },
+  // } = useForm();
 
   const navigate = useNavigate();
   const inputRef = useRef();
@@ -55,22 +56,8 @@ const SignUp = () => {
                       name="firstname"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
                       ref={inputRef}
-                      {...register("firstname", {
-                        required: "First name is required",
-                        minLength: {
-                          value: 2,
-                          message: "First name must be atlease 2 characters",
-                        },
-                        maxLength: {
-                          value: 30,
-                          message: "First name must be less than 30 characters",
-                        },
-                      })}
-                      aria-invalid={errors.fistname ? "true" : "false"}
+                      {...register("firstname")}
                     />
-                    <span className="text-red-500 text-sm ml-2">
-                      {errors.firstname && errors.firstname.message}
-                    </span>
                   </div>
                 </div>
                 <div className="mt-3 mb-4 flex justify-start">
@@ -80,22 +67,8 @@ const SignUp = () => {
                       placeholder="Last Name"
                       name="lastname"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("lastname", {
-                        required: "Last name is required",
-                        minLength: {
-                          value: 2,
-                          message: "Last name must be atlease 2 characters",
-                        },
-                        maxLength: {
-                          value: 30,
-                          message: "Last name must be less than 30 characters",
-                        },
-                      })}
-                      aria-invalid={errors.lastname ? "true" : "false"}
+                      {...register("lastname")}
                     />
-                    <span className="text-red-500 text-sm ml-2">
-                      {errors.lastname && errors.lastname.message}
-                    </span>
                   </div>
                 </div>
                 <div className="mt-3 mb-4 flex justify-start">
@@ -105,18 +78,8 @@ const SignUp = () => {
                       name="email"
                       placeholder="Email"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7]  focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("email", {
-                        required: "Email is required",
-                        pattern: {
-                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                          message: "Invalid email address",
-                        },
-                      })}
-                      aria-invalid={errors.email ? "true" : "false"}
+                      {...register("email")}
                     />
-                    <span className="text-red-500 text-sm ml-2">
-                      {errors.email && errors.email.message}
-                    </span>
                   </div>
                 </div>
                 <div className="mt-3 mb-4 flex justify-start">
@@ -126,23 +89,8 @@ const SignUp = () => {
                       name="phone"
                       placeholder="Contact No."
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("phone", {
-                        required: "Contact Number is required",
-                        pattern: /^[0-9\b]+$/,
-                        minLength: {
-                          value: 10,
-                          message: "Contact Number must be valid!",
-                        },
-                        maxLength: {
-                          value: 20,
-                          message: "Contact Number must be valid!",
-                        },
-                      })}
-                      aria-invalid={errors.phone ? "true" : "false"}
+                      {...register("phone")}
                     />
-                    <span className="text-red-500 text-sm ml-2">
-                      {errors.phone && errors.phone.message}
-                    </span>
                   </div>
                 </div>
                 <div className="mt-3 mb-4 flex justify-start">
@@ -152,22 +100,8 @@ const SignUp = () => {
                       placeholder="Password"
                       name="password"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("password", {
-                        minLength: {
-                          value: 9,
-                          message: "Password must be at least 9 characters",
-                        },
-                        maxLength: {
-                          value: 100,
-                          message: "Password must be less than 100 characters",
-                        },
-                        required: "Password is required",
-                      })}
-                      aria-invalid={errors.password ? "true" : "false"}
+                      {...register("password")}
                     />
-                    <span className="text-red-500 text-sm ml-2">
-                      {errors.password && errors.password.message}
-                    </span>
                   </div>
                 </div>
                 <div className="mt-3 mb-4 flex justify-start">
@@ -177,26 +111,7 @@ const SignUp = () => {
                       placeholder="Confirm Password"
                       name="confirmPassword"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("confirmpassword", {
-                        required:
-                          "Confirm Password does not match with Password",
-                        minLength: {
-                          value: 9,
-                          message:
-                            "Confirm Password does not match with Password",
-                        },
-                        maxLength: {
-                          value: 100,
-                          message:
-                            "Confirm Password does not match with Password",
-                        },
-                        validate: (val) => {
-                          if (watch("password") !== val) {
-                            return "Confirm Password does not match with Password";
-                          }
-                        },
-                      })}
-                      aria-invalid={errors.confirmpassword ? "true" : "false"}
+                      {...register("confirmpassword")}
                     />
                     <span className="text-red-500 text-sm ml-2">
                       {errors.confirmpassword && errors.confirmpassword.message}
@@ -209,11 +124,7 @@ const SignUp = () => {
                       name="role_id"
                       id="role_id"
                       className="rounded-md bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] text-gray-600 focus:border focus:border-textActive focus:ring-0"
-                      {...register("role_id", {
-                        required: "Select Role",
-                        valueAsNumber: true,
-                      })}
-                      aria-invalid={errors.role_id ? "true" : "false"}
+                      {...register("role_id")}
                     >
                       <option value="">Select Role</option>
                       <option value="1">Admin</option>
