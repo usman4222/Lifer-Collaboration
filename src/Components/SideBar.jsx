@@ -3,6 +3,7 @@ import {
   IoDocumentOutline,
   IoBicycleOutline,
 } from "react-icons/io5";
+import { memo } from "react";
 import { RiMenu2Fill } from "react-icons/ri";
 import { FiClock } from "react-icons/fi";
 import { TfiWallet } from "react-icons/tfi";
@@ -10,6 +11,8 @@ import { MdOutlineContactSupport } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
 const SideBar = () => {
+  console.log("Sidebar rendered");
+
   return (
     <>
       <div
@@ -94,4 +97,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default memo(SideBar);

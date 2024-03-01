@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef, useEffect } from "react";
+import React, { Fragment, useRef } from "react";
 import logo from "../assets/logo.png";
 import { IoIosArrowForward } from "react-icons/io";
 import { signup } from "../Services/Authentication.js";
@@ -14,8 +14,11 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
+  console.log("Signup rendered");
   const navigate = useNavigate();
   const inputRef = useRef();
+  const passwordRef = useRef();
+  passwordRef.current = watch("password", "");
 
   const navigator = () => {
     navigate("/account/login");
@@ -55,7 +58,21 @@ const SignUp = () => {
                       name="firstname"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
                       ref={inputRef}
-                      {...register("firstname")}
+                      {...register("firstname", {
+                        required: "First name is required",
+                        minLength: {
+                          value: 3,
+                          message: "First name must be atleast 3 characters",
+                        },
+                        maxLength: {
+                          value: 50,
+                          message: "First name must be less than 50 characters",
+                        },
+                        pattern: {
+                          value: /^[a-zA-Z]+$/,
+                          message: "Only alphabets are allowed",
+                        },
+                      })}
                     />
                     {errors.firstname && (
                       <span className="text-red-500 text-sm ml-3">
@@ -71,7 +88,21 @@ const SignUp = () => {
                       placeholder="Last Name"
                       name="lastname"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("lastname")}
+                      {...register("lastname", {
+                        required: "Last name is required",
+                        minLength: {
+                          value: 3,
+                          message: "Last name must be atleast 3 characters",
+                        },
+                        maxLength: {
+                          value: 50,
+                          message: "Last name must be less than 50 characters",
+                        },
+                        pattern: {
+                          value: /^[a-zA-Z]+$/,
+                          message: "Only alphabets are allowed",
+                        },
+                      })}
                     />
                     {errors.lastname && (
                       <span className="text-red-500 text-sm ml-3">
@@ -87,7 +118,13 @@ const SignUp = () => {
                       name="email"
                       placeholder="Email"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7]  focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("email")}
+                      {...register("email", {
+                        required: "Email is required",
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                          message: "Invalid email address",
+                        },
+                      })}
                     />
                     {errors.email && (
                       <span className="text-red-500 text-sm ml-3">
@@ -103,7 +140,22 @@ const SignUp = () => {
                       name="phone"
                       placeholder="Contact No."
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("phone")}
+                      {...register("phone", {
+                        required: "Contact no. is required",
+                        minLength: {
+                          value: 10,
+                          message: "Contact no. must be atleast 10 characters",
+                        },
+                        maxLength: {
+                          value: 20,
+                          message:
+                            "Contact no. must be less than 20 characters",
+                        },
+                        pattern: {
+                          value: /^[0-9]+$/,
+                          message: "Only numbers are allowed",
+                        },
+                      })}
                     />
                     {errors.phone && (
                       <span className="text-red-500 text-sm ml-3">
@@ -118,8 +170,19 @@ const SignUp = () => {
                       type="password"
                       placeholder="Password"
                       name="password"
+                      ref={passwordRef}
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("password")}
+                      {...register("password", {
+                        required: "Password is required",
+                        minLength: {
+                          value: 9,
+                          message: "Password must be atleast 9 characters",
+                        },
+                        maxLength: {
+                          value: 100,
+                          message: "Password must be less than 100 characters",
+                        },
+                      })}
                     />
                     {errors.password && (
                       <span className="text-red-500 text-sm ml-3">
@@ -135,7 +198,12 @@ const SignUp = () => {
                       placeholder="Confirm Password"
                       name="confirmPassword"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("confirmpassword")}
+                      {...register("confirmpassword", {
+                        required: "Confirm Password is required",
+                        validate: (value) =>
+                          value === passwordRef.current ||
+                          "Passwords do not match",
+                      })}
                     />
                     {errors.confirmpassword && (
                       <span className="text-red-500 text-sm ml-3">
@@ -150,7 +218,9 @@ const SignUp = () => {
                       name="role_id"
                       id="role_id"
                       className="rounded-md bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] text-gray-600 focus:border focus:border-textActive focus:ring-0"
-                      {...register("role_id")}
+                      {...register("role_id", {
+                        required: "Role id must be selected",
+                      })}
                     >
                       <option value="">Select Role</option>
                       <option value="1">Admin</option>

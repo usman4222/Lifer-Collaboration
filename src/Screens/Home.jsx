@@ -3,8 +3,10 @@ import { FaRegCalendarCheck } from "react-icons/fa6";
 import { FaArrowUp } from "react-icons/fa6";
 import HeaderSection from "../Components/HeaderSection";
 import Wrapper from "../Components/Wrapper";
+import { memo } from "react";
 
 const Home = () => {
+  console.log("Home rendered");
   return (
     <>
       <Wrapper>
@@ -69,4 +71,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default memo(Home);

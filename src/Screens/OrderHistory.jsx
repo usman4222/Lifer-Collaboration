@@ -6,6 +6,8 @@ import Table from "../Components/Table";
 const OrderHistory = () => {
   const tableRows = ["ID", "DETAILS", "DATE", "PRICE", "RIDER", "STATUS"];
 
+  console.log("Order History Renderee");
+
   const tableData = [
     {
       id: 1,
