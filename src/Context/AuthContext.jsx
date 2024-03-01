@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
   const [accessToken, setAccessToken] = useState(null);
+  const [loading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -36,6 +37,8 @@ export const AuthProvider = ({ children }) => {
         user,
         loggedIn,
         toggleLoggedIn,
+        loading,
+        setIsLoading,
       }}
     >
       {children}

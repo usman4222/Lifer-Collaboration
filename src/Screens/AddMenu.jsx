@@ -4,6 +4,7 @@ import HeaderSection from "../Components/HeaderSection";
 import { FaArrowLeft, FaTimes, FaCloudUploadAlt } from "react-icons/fa";
 import SelectCategory from "../Components/SelectCategory";
 import SelectVariants from "../Components/SelectVariants";
+import { useNavigate } from "react-router-dom";
 
 const AddMenu = ({ edit }) => {
   const [images, setImages] = useState([]);
@@ -13,6 +14,8 @@ const AddMenu = ({ edit }) => {
   const [selectedVariant, setSelectedVariant] = useState("");
   const [showVariantInput, setShowVariantIput] = useState(false);
   const [openVariants, setOpenVariants] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -79,7 +82,11 @@ const AddMenu = ({ edit }) => {
       <div className="grid grid-cols-12  gap-x-5 md:mx-20 mt-10 mx-4 gap-y-5">
         <div className="md:col-span-7 col-span-12 flex flex-col justify-start items-start gap-y-5">
           <div className="flex flex-row text-gray-700 gap-x-5 justify-center items-center font-medium">
-            <FaArrowLeft size={22} />
+            <FaArrowLeft
+              size={22}
+              onClick={() => navigate(-1)}
+              className="cursor-pointer"
+            />
             <h3 className="text-2xl ">Update Menu Item</h3>
           </div>
           <div className="flex flex-col justify-start items-start gap-y-5 w-full">
@@ -120,6 +127,7 @@ const AddMenu = ({ edit }) => {
                   </span>
                   <input
                     type="file"
+                    accept="image/*"
                     className="hidden"
                     id="productImages"
                     multiple
