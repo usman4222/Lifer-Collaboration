@@ -25,6 +25,7 @@ import Signup from "./Screens/Signup.jsx";
 import { AuthProvider } from "./Context/AuthContext.jsx";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
+import RegRestaurant from "./Screens/RegRestaurant.jsx";
 
 function App() {
   const [overlay, setOverlay] = useState(false);
@@ -97,6 +98,7 @@ function App() {
               <Route key="help-form" element={<HelpForm />} path="/help-form" />
               <Route key="menu" element={<Menu />} path="/menu/*" />,
               <Route key="add-menu" element={<AddMenu />} path="/add-menu" />,
+              {/* <Route key="reg-restaurant" element={<RegRestaurant />} path="/reg-restaurant" /> */}
             </Route>
             <Route key="login" element={<Login />} path="/account/login" />,
             <Route key="signup" element={<Signup />} path="/account/signup" />

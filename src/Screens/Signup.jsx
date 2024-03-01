@@ -1,19 +1,19 @@
 import React, { Fragment, useState, useRef, useEffect } from "react";
 import logo from "../assets/logo.png";
 import { IoIosArrowForward } from "react-icons/io";
-import signup from "../Services/Authentication.js";
 import { CiCamera } from "react-icons/ci";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { signup } from "../Services/Authentication";
 
 const SignUp = () => {
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   watch,
-  //   formState: { errors },
-  // } = useForm();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
   const navigate = useNavigate();
   const inputRef = useRef();

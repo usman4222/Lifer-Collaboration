@@ -30,90 +30,96 @@ const RiderForm = () => {
           >
             Add Rider
           </h1>
-          <div className="mb-3 ">
-            <div className="flex flex-col">
-              <label htmlFor="name" className="text-sm font-bold">
-                Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                className="rounded-lg focus:border-0 focus:outline-yellow-500"
-              />
-            </div>
-          </div>
-          <div className="mb-3 ">
-            <div className="flex flex-col">
-              <label htmlFor="email" className="text-sm font-bold">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                className="rounded-lg focus:border-0 focus:outline-yellow-500"
-              />
-            </div>
-          </div>
-          <div className="mb-3 ">
-            <div className="flex flex-col">
-              <label htmlFor="contact" className="text-sm font-bold">
-                Contact
-              </label>
-              <input
-                type="text"
-                name="contact"
-                id="contact"
-                className="rounded-lg focus:border-0 focus:outline-yellow-500"
-              />
-            </div>
-          </div>
-          <div className="mb-3 ">
-            <div className="flex flex-col">
-              <label htmlFor="password" className="text-sm font-bold">
-                Password
-              </label>
-              <input
-                type="text"
-                name="password"
-                id="password"
-                className="rounded-lg focus:border-0 focus:outline-yellow-500"
-              />
-            </div>
-          </div>
-
-          <div className="mb-3 ">
-            <div className="flex flex-col">
-              <label htmlFor="label" className="text-sm font-bold">
-                Upload Picture
-              </label>
-              <label
-                htmlFor="upload"
-                className="cursor-pointer bg-textActive shadow-2xl text-white px-4 py-2 w-[100px] text-center rounded-lg mt-2 font-bold "
-              >
-                Browse
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3 ">
+              <div className="flex flex-col">
+                <label htmlFor="name" className="text-sm font-bold">
+                  Name
+                </label>
                 <input
-                  type="file"
-                  name="upload"
-                  id="upload"
-                  accept="image/*"
-                  className="rounded-lg hidden"
-                  onChange={handleImageChange}
+                  type="text"
+                  name="name"
+                  id="name"
+                  className="rounded-lg focus:border-0 focus:outline-yellow-500"
+                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                 />
-              </label>
-              <div className="mt-3 bg-gray-200 w-full rounded-lg py-2 flex justify-center items-center">
-                {imagePreview ? (
-                  <img src={imagePreview} alt="Rider Image" />
-                ) : (
-                  <div>No File Choosen</div>
-                )}
               </div>
             </div>
-          </div>
-          <button className="bg-textActive text-white py-1 font-semibold rounded-lg">
-            Add
-          </button>
+            <div className="mb-3 ">
+              <div className="flex flex-col">
+                <label htmlFor="email" className="text-sm font-bold">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  className="rounded-lg focus:border-0 focus:outline-yellow-500"
+                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                />
+              </div>
+            </div>
+            <div className="mb-3 ">
+              <div className="flex flex-col">
+                <label htmlFor="contact" className="text-sm font-bold">
+                  Contact
+                </label>
+                <input
+                  type="text"
+                  name="contact"
+                  id="contact"
+                  className="rounded-lg focus:border-0 focus:outline-yellow-500"
+                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                />
+              </div>
+            </div>
+            <div className="mb-3 ">
+              <div className="flex flex-col">
+                <label htmlFor="password" className="text-sm font-bold">
+                  Password
+                </label>
+                <input
+                  type="text"
+                  name="password"
+                  id="password"
+                  className="rounded-lg focus:border-0 focus:outline-yellow-500"
+                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                />
+              </div>
+            </div>
+            <div className="mb-3 ">
+              <div className="flex flex-col">
+                <label htmlFor="label" className="text-sm font-bold">
+                  Upload Picture
+                </label>
+                <label
+                  htmlFor="upload"
+                  className="cursor-pointer bg-textActive shadow-2xl text-white px-4 py-2 w-[100px] text-center rounded-lg mt-2 font-bold "
+                >
+                  Browse
+                  <input
+                    type="file"
+                    name="upload"
+                    id="upload"
+                    accept="image/*"
+                    className="rounded-lg hidden"
+                    onChange={(e) => setFile(e.target.files[0])} 
+                    onClick={handleUploadImage}
+                  />
+                </label>
+                <div className="mt-3 bg-gray-200 w-full rounded-lg py-2 flex justify-center items-center">
+                  {imagePreview ? (
+                    <img src={imagePreview} alt="Rider Image" />
+                  ) : (
+                    <div>No File Choosen</div>
+                  )}
+                </div>
+              </div>
+            </div>
+            <button onClick={onsubmit} className="bg-textActive text-white py-1 font-semibold rounded-lg">
+              Add
+            </button>
+          </form>
         </div>
       </div>
     </>
