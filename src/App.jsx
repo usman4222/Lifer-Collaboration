@@ -19,9 +19,10 @@ import AddRevenue from "./Components/AddRevenue";
 import Notification from "./Screens/Notification";
 import Login from "./Screens/Login.jsx";
 import Signup from "./Screens/Signup.jsx";
-import { AuthProvider } from "./Context/AuthContext.jsx";
+import { useAuth } from "./Context/AuthContext.jsx";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
+import Loader from "./Components/Loader.jsx";
 
 function App() {
   const [overlay, setOverlay] = useState(false);
@@ -30,6 +31,8 @@ function App() {
   const [showRepresentator, setShowRepresentator] = useState(false);
   const [showRevenueForm, setShowRevenueForm] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
+
+  const { loading } = useAuth();
 
   const toggleChat = () => {
     setShowChat(!showChat);
@@ -58,48 +61,47 @@ function App() {
   return (
     <>
       <Toaster />
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
+      {loading && <Loader />}
+      <BrowserRouter>
+        <Routes>
+          <Route
+            element={
+              <ProtectedRoute
+                toggleNotification={toggleNotification}
+                toggleChat={toggleChat}
+              />
+            }
+          >
+            <Route key="home" element={<Home />} path="/" />,
             <Route
-              element={
-                <ProtectedRoute
-                  toggleNotification={toggleNotification}
-                  toggleChat={toggleChat}
-                />
-              }
-            >
-              <Route key="home" element={<Home />} path="/" />,
-              <Route
-                key="order-history"
-                element={<OrderHistory />}
-                path="/order-history"
-              />
-              <Route key="orders" element={<Orders />} path="/orders" />,
-              <Route
-                key="help"
-                element={<Help toggleRepresentator={toggleRepresentator} />}
-                path="/help"
-              />
-              <Route
-                key="revenue"
-                element={<Revenue toggleRevenueForm={toggleRevenueForm} />}
-                path="/revenue"
-              />
-              <Route
-                key="riders"
-                element={<Rider toggleRiderForm={toggleRiderForm} />}
-                path="/riders"
-              />
-              <Route key="help-form" element={<HelpForm />} path="/help-form" />
-              <Route key="menu" element={<Menu />} path="/menu/*" />,
-              <Route key="add-menu" element={<AddMenu />} path="/add-menu" />,
-            </Route>
-            <Route key="login" element={<Login />} path="/account/login" />,
-            <Route key="signup" element={<Signup />} path="/account/signup" />
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
+              key="order-history"
+              element={<OrderHistory />}
+              path="/order-history"
+            />
+            <Route key="orders" element={<Orders />} path="/orders" />,
+            <Route
+              key="help"
+              element={<Help toggleRepresentator={toggleRepresentator} />}
+              path="/help"
+            />
+            <Route
+              key="revenue"
+              element={<Revenue toggleRevenueForm={toggleRevenueForm} />}
+              path="/revenue"
+            />
+            <Route
+              key="riders"
+              element={<Rider toggleRiderForm={toggleRiderForm} />}
+              path="/riders"
+            />
+            <Route key="help-form" element={<HelpForm />} path="/help-form" />
+            <Route key="menu" element={<Menu />} path="/menu/*" />,
+            <Route key="add-menu" element={<AddMenu />} path="/add-menu" />,
+          </Route>
+          <Route key="login" element={<Login />} path="/account/login" />,
+          <Route key="signup" element={<Signup />} path="/account/signup" />
+        </Routes>
+      </BrowserRouter>
       {showChat && (
         <>
           {createPortal(<Chat />, document.getElementById("modal"))}
