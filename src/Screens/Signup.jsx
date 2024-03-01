@@ -2,18 +2,18 @@ import React, { Fragment, useState, useRef, useEffect } from "react";
 import logo from "../assets/logo.png";
 import profil from "../assets/profil.png";
 import { IoIosArrowForward } from "react-icons/io";
-import signup from "../Services/Authentication.js";
+// import signup from "../Services/Authentication.js";
 import { CiCamera } from "react-icons/ci";
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   watch,
+  //   formState: { errors },
+  // } = useForm();
 
   const navigate = useNavigate();
   const inputRef = useRef();
@@ -79,7 +79,7 @@ const SignUp = () => {
                       name="firstname"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
                       ref={inputRef}
-                      {...register("firstname")}
+                      // {...register("firstname")}
                     />
                   </div>
                 </div>
@@ -90,7 +90,7 @@ const SignUp = () => {
                       placeholder="Last Name"
                       name="lastname"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("lastname")}
+                      // {...register("lastname")}
                     />
                   </div>
                 </div>
@@ -101,7 +101,7 @@ const SignUp = () => {
                       name="email"
                       placeholder="Email"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7]  focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("email")}
+                      // {...register("email")}
                     />
                   </div>
                 </div>
@@ -112,7 +112,7 @@ const SignUp = () => {
                       name="phone"
                       placeholder="Contact No."
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px] w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("phone")}
+                      // {...register("phone")}
                     />
                   </div>
                 </div>
@@ -123,7 +123,7 @@ const SignUp = () => {
                       placeholder="Password"
                       name="password"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("password")}
+                      // {...register("password")}
                     />
                   </div>
                 </div>
@@ -134,7 +134,7 @@ const SignUp = () => {
                       placeholder="Confirm Password"
                       name="confirmPassword"
                       className="pl-3 pr-4 py-2 rounded-lg bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] focus:border focus:border-textActive focus:ring-0"
-                      {...register("confirmpassword")}
+                      // {...register("confirmpassword")}
                     />
                   </div>
                 </div>
@@ -144,7 +144,7 @@ const SignUp = () => {
                       name="role_id"
                       id="role_id"
                       className="rounded-md bg-[#F5F5F7] focus:outline-none md:w-[400px]  w-[300px] text-gray-600 focus:border focus:border-textActive focus:ring-0"
-                      {...register("role_id")}
+                      // {...register("role_id")}
                     >
                       <option value="">Select Role</option>
                       <option value="1">Admin</option>

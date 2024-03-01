@@ -1,4 +1,4 @@
-import axios from "axios"
+// import axios from "axios"
 
 const signup = async ({ name, email, phone, password, confirmPassword, role_id }) => {
     try {
@@ -30,4 +30,4 @@ const signup = async ({ name, email, phone, password, confirmPassword, role_id }
 
 
 
-export default signup;
+// export default signup;

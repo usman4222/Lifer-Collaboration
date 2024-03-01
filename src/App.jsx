@@ -25,6 +25,7 @@ import OTP from "./Screens/OTP.jsx";
 import OTP1 from "./Screens/Otpcode.jsx";
 import Otpcode from "./Screens/Otpcode.jsx";
 import PackageScreen from "./Screens/PackageScreen.jsx";
+import RegRestaurant from "./Screens/RegRestaurant.jsx";
 function App() {
   const [overlay, setOverlay] = useState(false);
   const [showChat, setShowChat] = useState(false);
@@ -82,6 +83,7 @@ function App() {
         <Route element={<AddMenu />} path="/add-menu" />
         {/* <Route element={<Otpcode />} path="/code" />
         <Route element={<PackageScreen />} path="/cod" /> */}
+        {/* <Route element={<RegRestaurant/>} path="/reg-res"/> */}
       </Routes>
 
       {showChat && (
