@@ -12,6 +12,8 @@ const Login = () => {
   const navigate = useNavigate();
   const { loggedIn, toggleLoggedIn } = useAuth();
 
+  console.log("Login rendered");
+
   const {
     register,
     handleSubmit,
