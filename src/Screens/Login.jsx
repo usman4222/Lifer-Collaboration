@@ -10,7 +10,7 @@ import { useAuth } from "../Context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { loggedIn, toggleLoggedIn } = useAuth();
+  const { loggedIn, toggleLoggedIn, setIsLoading } = useAuth();
 
   console.log("Login rendered");
 
@@ -21,6 +21,7 @@ const Login = () => {
   } = useForm();
 
   const formSubmit = async (data) => {
+    setIsLoading(true);
     try {
       const response = await login(data);
       if (response) {
@@ -36,13 +37,19 @@ const Login = () => {
           "access_token",
           JSON.stringify(response.data.token)
         );
-        toast.success(response.message, { duration: 5000 });
-        toggleLoggedIn();
-        navigate("/");
+        setTimeout(() => {
+          setIsLoading(false);
+          toast.success(response.message, { duration: 5000 });
+          toggleLoggedIn();
+          navigate("/");
+        }, 5000);
       }
     } catch (error) {
-      toast.error(error.message || "An error occured during Login", {
-        duration: 5000,
+      setTimeout(() => {
+        setIsLoading(false);
+        toast.error(error.message || "An error occured during Login", {
+          duration: 5000,
+        });
       });
     }
   };

@@ -5,8 +5,11 @@ import { signup } from "../Services/Authentication.js";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useAuth } from "../Context/AuthContext.jsx";
 
 const SignUp = () => {
+  const { setIsLoading } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -25,13 +28,20 @@ const SignUp = () => {
   };
 
   const formSubmit = async (data) => {
+    setIsLoading(true);
     try {
       const response = await signup(data);
-      toast.success(response.message, { duration: 5000 });
+      setTimeout(() => {
+        setIsLoading(false);
+        toast.success(response.message, { duration: 5000 });
+      }, 5000);
     } catch (error) {
-      toast.error(error.message || "An error occurred during signup.", {
-        duration: 5000,
-      });
+      setTimeout(() => {
+        setIsLoading(false);
+        toast.error(error.message || "An error occurred during signup.", {
+          duration: 5000,
+        });
+      }, 5000);
     }
   };
 
