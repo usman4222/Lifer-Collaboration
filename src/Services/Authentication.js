@@ -1,33 +1,47 @@
-// import axios from "axios"
+import axios from "axios"
 
-const signup = async ({ name, email, phone, password, confirmPassword, role_id }) => {
+const base_url = import.meta.env.VITE_BASE_URL;
+export const signup = async (data) => {
     try {
-        if (name === "" || email === "" || password === "" || confirmPassword === "" || phone === "" || userrole === "") {
-            throw new Error("Please enter all fields");
-        }
+        if (data) {
+            const response = await axios.post(`${base_url}/signup`, {
+                first_name: data.firstname,
+                last_name: data.lastname,
+                contact_no: data.phone,
+                email: data.email,
+                password: data.password,
+                role_id: data.role_id
+            });
 
-        if (password !== confirmPassword) {
-            throw new Error("Passwords do not match");
-        }
-
-        const response = await axios.post("httpzs://reqres.in/api/register", {
-            name,
-            email,
-            phone,
-            password
-        });
-
-        if (response.status === 201) {
-            console.log("Signup successful:", response.data);
             return response.data;
-        } else {
-            throw new Error("Signup failed");
         }
     } catch (error) {
-        throw error;
+        throw error.response.data;
+    }
+
+}
+
+
+export const login = async (data) => {
+    try {
+        if (data) {
+            const response = await axios.post(`${base_url}/login`, {
+                email: data.email,
+                password: data.password
+            })
+            return response.data;
+        }
+    } catch (error) {
+        throw error.response.data;
     }
 }
 
 
-
-// export default signup;
+export const logout = async () => {
+    try {
+        localStorage.removeItem('user')
+        localStorage.removeItem('access_token')
+    } catch (error) {
+        console.log(error)
+    }
+}
