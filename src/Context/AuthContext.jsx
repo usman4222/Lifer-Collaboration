@@ -7,7 +7,13 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    id: null,
+    first_name: "",
+    last_name: "",
+    email: "",
+    contact_no: "",
+  });
   const [loggedIn, setLoggedIn] = useState(false);
   const [accessToken, setAccessToken] = useState(null);
 
@@ -15,7 +21,7 @@ export const AuthProvider = ({ children }) => {
     const stored_user = localStorage.getItem("user");
     const stored_token = localStorage.getItem("access_token");
     if (stored_user) {
-      setUser(stored_user);
+      setUser(JSON.parse(stored_user));
       setLoggedIn(true);
       setAccessToken(stored_token);
     }

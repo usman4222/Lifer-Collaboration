@@ -2,20 +2,40 @@ import { useState } from "react";
 
 const RiderForm = () => {
   const [imagePreview, setImagePreview] = useState(null);
+  const [error, setError] = useState(null)
+  const [imageUploadError, setImageUploadError] = useState(null)
+  const [formData, setFormData] = useState({})
+  // console.log(formData);
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
 
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-      };
-
-      reader.readAsDataURL(file);
+  const base_url = import.meta.env.VITE_BASE_URL;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem('access_token');
+    try {
+      const res = await fetch(`${base_url}/riders`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData)
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setError(data.message)
+        return
+      }
+      if (res.ok) {
+        setError(null)
+        // navigate(`/post/${data.slug}`)
+      }
+    } catch (error) {
+      setError('Something went wrong')
+      console.log(error);
     }
-  };
+  }
+
 
   return (
     <>
@@ -34,14 +54,28 @@ const RiderForm = () => {
             <div className="mb-3 ">
               <div className="flex flex-col">
                 <label htmlFor="name" className="text-sm font-bold">
-                  Name
+                  First Name
                 </label>
                 <input
                   type="text"
                   name="name"
                   id="name"
                   className="rounded-lg focus:border-0 focus:outline-yellow-500"
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                  onChange={(e) => setFormData({ ...formData, first_name: e.target.value })}
+                />
+              </div>
+            </div>
+            <div className="mb-3 ">
+              <div className="flex flex-col">
+                <label htmlFor="name" className="text-sm font-bold">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  className="rounded-lg focus:border-0 focus:outline-yellow-500"
+                  onChange={(e) => setFormData({ ...formData, last_name: e.target.value })}
                 />
               </div>
             </div>
@@ -55,7 +89,7 @@ const RiderForm = () => {
                   name="email"
                   id="email"
                   className="rounded-lg focus:border-0 focus:outline-yellow-500"
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
               </div>
             </div>
@@ -69,7 +103,7 @@ const RiderForm = () => {
                   name="contact"
                   id="contact"
                   className="rounded-lg focus:border-0 focus:outline-yellow-500"
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                  onChange={(e) => setFormData({ ...formData, contact_no: e.target.value })}
                 />
               </div>
             </div>
@@ -83,7 +117,7 @@ const RiderForm = () => {
                   name="password"
                   id="password"
                   className="rounded-lg focus:border-0 focus:outline-yellow-500"
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 />
               </div>
             </div>
@@ -103,8 +137,8 @@ const RiderForm = () => {
                     id="upload"
                     accept="image/*"
                     className="rounded-lg hidden"
-                    onChange={(e) => setFile(e.target.files[0])} 
-                    onClick={handleUploadImage}
+                    onChange={(e) => setFile(e.target.files[0])}
+                  // onClick={handleUploadImage}
                   />
                 </label>
                 <div className="mt-3 bg-gray-200 w-full rounded-lg py-2 flex justify-center items-center">

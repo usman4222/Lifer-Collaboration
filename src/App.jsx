@@ -98,10 +98,10 @@ function App() {
               <Route key="help-form" element={<HelpForm />} path="/help-form" />
               <Route key="menu" element={<Menu />} path="/menu/*" />,
               <Route key="add-menu" element={<AddMenu />} path="/add-menu" />,
-              {/* <Route key="reg-restaurant" element={<RegRestaurant />} path="/reg-restaurant" /> */}
             </Route>
             <Route key="login" element={<Login />} path="/account/login" />,
             <Route key="signup" element={<Signup />} path="/account/signup" />
+            <Route key="reg-restaurant" element={<RegRestaurant />} path="/reg-restaurant" />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

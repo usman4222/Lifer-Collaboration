@@ -22,20 +22,40 @@ export const signup = async (data) => {
 }
 
 
+// export const login = async (data) => {
+//     try {
+//         if (data) {
+//             const response = await axios.post(`${base_url}/login`, {
+//                 email: data.email,
+//                 password: data.password
+//             })
+//             console.log("token", response.data.data.token);
+//             return response.data;
+//         }
+//     } catch (error) {
+//         throw error.response.data;
+//     }
+// }
 export const login = async (data) => {
     try {
         if (data) {
             const response = await axios.post(`${base_url}/login`, {
                 email: data.email,
                 password: data.password
-            })
+            });
+
+            const token = response.data.data.token;
+
+            localStorage.setItem('access_token', token);
+            // console.log(token);
+
             return response.data;
         }
     } catch (error) {
+        console.error(error);
         throw error.response.data;
     }
-}
-
+};
 
 export const logout = async () => {
     try {
