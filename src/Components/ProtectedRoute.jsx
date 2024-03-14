@@ -1,21 +1,8 @@
-import React from "react";
-import { useAuth } from "../Context/AuthContext";
-import { Outlet, Navigate } from "react-router-dom";
-import Navbar from "./Navbar";
-import SideBar from "./SideBar";
+import { Outlet, Navigate } from 'react-router-dom'
 
-const ProtectedRoute = ({ toggleChat, toggleNotification }) => {
-  const { loggedIn } = useAuth();
+const ProtectedRoute = ({ children }) => {
+    const loggedIn = localStorage.getItem('loggedIn') === 'true'
+    return loggedIn ? children || <Outlet /> : <Navigate to='/account/login' />
+}
 
-  return loggedIn ? (
-    <>
-      <Navbar toggleChat={toggleChat} toggleNotification={toggleNotification} />
-      <SideBar />
-      <Outlet />
-    </>
-  ) : (
-    <Navigate to={"/account/login"} />
-  );
-};
-
-export default ProtectedRoute;
+export default ProtectedRoute
