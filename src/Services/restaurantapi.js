@@ -1,17 +1,19 @@
 import axios from 'axios'
 
-const api = axios.create({
+const resturantApi = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
 })
 
-api.interceptors.request.use(
+resturantApi.interceptors.request.use(
     (config) => {
-        const user = JSON.parse(localStorage.getItem('user'))
         const token = JSON.parse(localStorage.getItem('access_token'))
-        const userID = user.id
-        if (token && userID) {
+        const resturant = JSON.parse(localStorage.getItem('restaurant'))
+        const resturantID = resturant.id
+        const userID = resturant.user_id
+        if (token && userID && resturantID) {
             config.headers.Authorization = `Bearer ${token}`
             config.headers['user_id'] = userID
+            config.headers['restaurant_id'] = resturantID
         }
         return config
     },
@@ -20,4 +22,4 @@ api.interceptors.request.use(
     },
 )
 
-export default api
+export default resturantApi

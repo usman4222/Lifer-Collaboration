@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState,memo } from "react";
 import logo from "../assets/logo.png";
 import { MdEmail } from "react-icons/md";
 import { IoLocationSharp } from "react-icons/io5";
@@ -109,4 +109,4 @@ const RegRestaurant = () => {
   );
 };
 
-export default RegRestaurant;
+export default memo(RegRestaurant);
